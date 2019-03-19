@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Web-Quản lý Sinh Viên Ngoại Trú</title>
+    <!-- Bootstrap core CSS -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="~/css/modern-business.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="~/css/custom.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img src="~/logo/HUTECH.png"></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <form>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sinh viên
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                            <a class="dropdown-item" href="@Url.Action("Dkngoaitru","Sinhvien")">Đăng ký ngoại trú</a>
+                            <a class="dropdown-item" href="@Url.Action("Dktimphongtro","Sinhvien")">Đăng ký tìm phòng trọ</a>
+                            <a class="dropdown-item" href="@Url.Action("Dkthaydoidiachi","Sinhvien")">Đăng ký thay đổi địa chỉ ngoại trú</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index","ChuNT")">Chủ nhà trọ</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Về chúng tôi
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                            <a class="dropdown-item" href="about.html">Về chúng tôi</a>
+                            <a class="dropdown-item" href="faq.html">Thắc mắc</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @Html.Action("UsernamePartial", "Home") <span class="round"><img src="~/images/social-icon/png/006-vine.png" alt="avatar" style="width:30px"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                            <a class="dropdown-item" href="@Url.Action("Login","Home")" >Login</a>
+                            <a class="dropdown-item" href="sidebar.html" data-toggle="modal" data-target="#registerForm">Register</a>
+                            <a class="dropdown-item" href="admin-index.html">Admin pages</a>
+                            <hr>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header>
+        <div id="carouselExampleIndicators" height="800px" class="carousel slide pt-5" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <!-- Slide One - Set the background image for this slide in the line below -->
+                <div class="carousel-item active" style="background-image: url('../../images/liesd.jpg');">
+                </div>
+                <!-- Slide Two - Set the background image for this slide in the line below -->
+                <div class="carousel-item" style=" background-image: url('../../images/sli.jpg');">
+                </div>
+                <!-- Slide Three - Set the background image for this slide in the line below -->
+                <div class="carousel-item" style="background-image: url('../../images/ssili.jpg');">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </header>
+    <!-- Page Content -->
+    <div class="container">
+        <!-- End register modal -->
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Đăng xuất ?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
+                        <a class="btn btn-primary" href="@Url.Action("Logout","Home")">Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="row pt-5">
+            <div class="col-md-8"><h2>Tin mới</h2></div>
+            <div class="col-md-4 text-right"><a  href="@Url.Action("MoreNews", "Home")">Xem thêm >></a></div>
+        </div>
+        <hr>-->
+        <!-- Marketing Icons Section -->
+        <!--<div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">Tin 1</h4>
+                    <div class="card-body">
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">Tin 2</h4>
+                    <div class="card-body">
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">Tin 3</h4>
+                    <div class="card-body">
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>-->
+        <!-- /.row -->
+        <!-- Portfolio Section -->
+        
+        <div>
+            @RenderBody()
+        </div>
+        <br />
+        <!-- /.row -->
+        <!-- Features Section -->
+        <div class="row" style="background-image: url('../../images/b1.jpg');margin-top: 70px;">
+            <div class="col-lg-6">
+                <h2><i>Địa chỉ liên hệ với chúng tôi</i></h2>
+                <ul>
+                    <li>475A Điện Biên Phủ,phường 25 quận Bình Thạnh tp Hồ Chí Minh</li>
+                    <li>SĐT: 123456789</li>
+                    <li>
+                        Sơ đồ chỉ đường : <br /> <img style="width: 90%;height: 335px;" src="~/images/so-do-den-truong.jpg" />
+                    </li>
+                </ul>
+            </div>
+            <div id="map" style="width:570px;height:470px;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.120335130718!2d106.71240001405664!3d10.802094592304114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528a459cb43ab%3A0x6c3d29d370b52a7e!2zxJDhuqFpIGjhu41jIEh1dGVjaA!5e0!3m2!1svi!2s!4v1542957349100" width="600" height="450" frameborder="0" style="border:0;margin-top: 118px; height: 335px;width: 550px;" allowfullscreen></iframe>
+            </div>
+        </div>
+        <!-- /.row -->
+        <hr>
+        <!-- Call to Action Section -->
+
+        <a class="btn btn-warning mb-5 mr-2" href="javascript:" id="return-to-top" style="width:40px;height:40px;position:fixed;bottom:0;right:0;z-index:1030"><i class="fas fa-home"></i></a>
+    </div>
+    <!-- Footer -->
+    <footer class="py-5" style="background-color:#0063cd">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <p class="m-0 text-light"><b>Trụ sở:</b> 475A Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM</p>
+                    <p class="m-0 text-light"><b>Cơ sở 475B:</b> 475B Điện Biên Phủ, P.25, Q.Bình Thạnh, TP.HCM</p>
+                    <p class="m-0 text-light"><b>Cơ sở Ung Văn Khiêm:</b> 31/36 Ung Văn Khiêm, P.25, Q.Bình Thạnh, TP.HCM</p>
+                    <p class="m-0 text-light"><b>ĐT:</b> (028) 5445 7777 - <b>Fax:</b> (028) 5445 4444 - <b>Email:</b> hutech@hutech.edu.vn</p>
+                </div>
+                <div class="col-md-4">
+                    <a href="#"><img src="~/images/social-icon/svg/036-facebook.svg" style=" width: 30px"></a>
+                    <a href="#"><img src="~/images/social-icon/svg/001-youtube.svg" style=" width: 30px"></a>
+                    <a href="#"><img src="~/images/social-icon/svg/029-instagram.svg" style=" width: 30px"></a>
+                    <p class="m-0 text-light">Copyright &copy; Your Website 2018</p>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </footer>
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(window).scroll(function () {
+            if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+                $('#return-to-top').addClass('d-inline');    // Fade in the arrow
+                $('#return-to-top').removeClass('d-none');
+            } else {
+                $('#return-to-top').addClass('d-none');   // Else fade out the arrow
+                $('#return-to-top').removeClass('d-inline');
+            }
+        });
+        $('#return-to-top').click(function () {      // When arrow is clicked
+            $('body,html').animate({
+                scrollTop: 0                       // Scroll to top of body
+            }, 500);
+        });
+    </script>
+    <script>
+        function notLogin() {
+            alert("Bạn chưa đăng nhập");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+﻿@model IEnumerable<QLSVNgoaiTru.Models.sinhvien>
+@{
+    ViewBag.Title = "Sinhvien";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Trang chủ</a>
+    </li>
+    <li class="breadcrumb-item">Danh sách sinh viên</li>
+</ol>
+<!-- DataTables Example -->
+<div class="card mb-5">
+    <div class="card-header">
+        <div class="float-left">
+            <i class="fas fa-user-circle"></i>Danh sách sinh viên
+        </div>
+        <div class="float-right">
+            @Html.ActionLink("Thêm", "ThemSinhVien", "Admin", null, new { @class = "btn btn-success" })
+            <a class="btn btn-danger text-white text-white" data-toggle="modal" data-target="#deleteModal">Xóa chọn</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" class="select-all"></th>
+                        <th> @Html.DisplayNameFor(model => model.Masv)</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tensv)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Gioitinh)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Diachi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SDT)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Quequan)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nienkhoa)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Malop)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Images)
+                        </th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th><input type="checkbox" class="select-all"></th>
+                        <th> @Html.DisplayNameFor(model => model.Masv)</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tensv)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Gioitinh)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Diachi)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SDT)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Quequan)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nienkhoa)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Malop)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Images)
+                        </th>
+
+                        <th>Chức năng</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td><input type="checkbox" class="checkbox"></td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Masv)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tensv)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gioitinh)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Diachi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SDT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quequan)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nienkhoa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Malop)
+                        </td>
+                        <td>
+                            <img src="@Url.Content("~/images/sv/"+  item.Images)" style="width:170px;height:50%" />
+                        </td>
+                        <td>
+                            @Html.ActionLink("Chi tiết", "CTSinhVien", "Admin", null, new { @class = "btn btn-info m-1" })
+                            <a class="btn btn-danger text-white m-1" data-toggle="modal" data-target="#deleteModal">Xóa</a>
+                        </td>
+                    </tr>
+                    }
+
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>

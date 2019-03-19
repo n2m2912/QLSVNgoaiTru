@@ -1,0 +1,34 @@
+﻿@using QLSVNgoaiTru.Models
+
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+<div class="row pt-5">
+    <div class="col-md-8"><h2>Danh sách phòng mới</h2></div>
+    <div class="col-md-4 text-right"><a href="@Url.Action("MoreRooms", "Home")">Xem thêm >></a></div>
+</div>
+
+<hr>
+<div class="row">
+    @foreach (var phong in Model)
+    {
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <div id="hinhanh" style="width:100%;height:300px">
+                    <a href="@Url.Action("Detail", "Home", new {id = phong.Maphongtro })">
+                        <img class="img-fluid" alt="" src="~/images/@phong.Images" style="width:100%;height:300px;object-fit: cover;" />
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="#">@phong.Tenphong</a>
+                    </h4>
+                    <p class="card-text">@phong.Mota</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

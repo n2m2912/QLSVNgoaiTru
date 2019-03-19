@@ -1,0 +1,68 @@
+﻿@model QLSVNgoaiTru.Models.chunhatro
+@{
+    ViewBag.Title = "Themchunhatro";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Trang chủ</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="admin-sinhvien.html">Danh sách chủ nhà trọ</a>
+    </li>
+    <li class="breadcrumb-item">Thêm chủ nhà trọ</li>
+</ol>
+<!-- DataTables Example -->
+<div class="card mb-5">
+    <div class="card-header">
+        Thêm chủ nhà trọ
+    </div>
+    <div class="card-body mb-5">
+        <div class="col-md-8">
+            @using (Html.BeginForm("Themchunhatro", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+            <form>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Tenchunhatro)
+                    @Html.EditorFor(model => model.Tenchunhatro, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tenchunhatro, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SDT)
+                    @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Hokhau)
+                    @Html.EditorFor(model => model.Hokhau, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Hokhau, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Pass)
+                    @Html.EditorFor(model => model.Pass, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Pass, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Imagees)
+                    <button id="imageDrop" class="btn btn-primary" onclick="document.getElementById('uploadImage').click()" title="Click or Drag Image">Upload image</button>
+                    <input id="uploadImage" type="file" />
+                    @ViewBag.Thongbao
+                </div>
+                <div class="pb-2">
+                    <input type="checkbox" class="form-control" placeholder="Quy định" style="display:inline; width: 5%">
+                    <p style="display:inline">Tôi chấp nhận những quy định.</p>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Lưu" class="btn btn-success" />
+                    @ViewBag.Thongbaosave
+                    <button class="btn btn-secondary">Quay về</button>
+                </div>
+               
+            </form>
+            }
+            </div>
+    </div>
+</div>
+

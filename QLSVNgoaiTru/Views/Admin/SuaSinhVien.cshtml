@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "SuaSinhVien";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Trang chủ</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="admin-sinhvien.html">Danh sách sinh viên</a>
+    </li>
+    <li class="breadcrumb-item">Sửa sinh viên</li>
+</ol>
+<!-- DataTables Example -->
+<div class="card mb-5">
+    <div class="card-header">
+        Sửa sinh viên
+    </div>
+    <div class="card-body">
+        <div class="col-md-8">
+            <form>
+                <div class="form-group">
+                    <label>Tên: </label>
+                    <input type="text" class="form-control" placeholder="Tên">
+                </div>
+                <div class="form-group">
+                    <label>Giới tính: </label><br>
+                    <label class="radio-inline"><input type="radio" name="optradio" value="1">Nam</label>
+                    <label class="radio-inline  pl-5"><input type="radio" name="optradio" vlaue="0">Nữ</label>
+                </div>
+                <div class="form-group">
+                    <label>Địa chỉ: </label>
+                    <input type="text" class="form-control" placeholder="Địa chỉ">
+                </div>
+                <div class="form-group">
+                    <label>SĐT: </label>
+                    <input type="text" class="form-control" placeholder="SĐT">
+                </div>
+                <div class="form-group">
+                    <label>Quê quán: </label>
+                    <input type="text" class="form-control" placeholder="Quê quán">
+                </div>
+                <div class="form-group">
+                    <label>Khóa: </label>
+                    <input type="text" class="form-control" placeholder="Khóa">
+                </div>
+                <div class="form-group">
+                    <label>Lớp: </label>
+                    <select class="form-control">
+                        <option>Mustard</option>
+                        <option>Ketchup</option>
+                        <option>Relish</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Mật khẩu: </label>
+                    <input type="text" class="form-control" placeholder="Mật khẩu">
+                </div>
+                <div class="form-group">
+                    <label>Hình ảnh: </label><br>
+                    <button id="imageDrop" class="btn btn-primary" onclick="document.getElementById('uploadImage').click()" title="Click or Drag Image">Upload image</button>
+                    <input id="uploadImage" type="file" />
+                </div>
+            </form>
+            <button class="btn btn-success">Đăng</button>
+            <button class="btn btn-secondary">Quay về</button>
+        </div>
+    </div>
+
