@@ -1,20 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="sinhvien" Class="DbQLSVDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-N2M\SQLEXPRESS;Initial Catalog=sinhvien;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="sinhvienConnectionString1" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.ctlvp" Member="ctlvps">
-    <Type Name="ctlvp">
-      <Column Name="MaloaiVP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Mabienbanvipham" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="bienbanvipham_ctlvp" Member="bienbanvipham" ThisKey="Mabienbanvipham" OtherKey="Mabienbanvipham" Type="bienbanvipham" IsForeignKey="true" />
-      <Association Name="loaivp_ctlvp" Member="loaivp" ThisKey="MaloaiVP" OtherKey="MaloaiVP" Type="loaivp" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.bienbanvipham" Member="bienbanviphams">
     <Type Name="bienbanvipham">
       <Column Name="Mabienbanvipham" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Solanvp" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Machunhatro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="bienbanvipham_ctlvp" Member="ctlvps" ThisKey="Mabienbanvipham" OtherKey="Mabienbanvipham" Type="ctlvp" />
       <Association Name="bienbanvipham_ctbbvp" Member="ctbbvps" ThisKey="Mabienbanvipham" OtherKey="Mabienbanvipham" Type="ctbbvp" />
+      <Association Name="bienbanvipham_ctlvp" Member="ctlvps" ThisKey="Mabienbanvipham" OtherKey="Mabienbanvipham" Type="ctlvp" />
       <Association Name="chunhatro_bienbanvipham" Member="chunhatro" ThisKey="Machunhatro" OtherKey="Machunhatro" Type="chunhatro" IsForeignKey="true" />
     </Type>
   </Table>
@@ -52,16 +44,17 @@
   </Table>
   <Table Name="dbo.chunhatro" Member="chunhatros">
     <Type Name="chunhatro">
-      <Column Name="Machunhatro" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Machunhatro" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Tenchunhatro" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="SDT" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Hokhau" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="Pass" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="Imagees" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Imagees" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Association Name="chunhatro_bienbanvipham" Member="bienbanviphams" ThisKey="Machunhatro" OtherKey="Machunhatro" Type="bienbanvipham" />
       <Association Name="chunhatro_bienbanxulivipham" Member="bienbanxuliviphams" ThisKey="Machunhatro" OtherKey="Machunhatro" Type="bienbanxulivipham" />
       <Association Name="chunhatro_biennhancoc" Member="biennhancocs" ThisKey="Machunhatro" OtherKey="Machunhatro" Type="biennhancoc" />
       <Association Name="chunhatro_biennhanphisinhhoat" Member="biennhanphisinhhoats" ThisKey="Machunhatro" OtherKey="Machunhatro" Type="biennhanphisinhhoat" />
+      <Association Name="chunhatro_dichvu" Member="dichvus" ThisKey="Machunhatro" OtherKey="Machunhatro" Type="dichvu" />
       <Association Name="chunhatro_phieudongtienphong" Member="phieudongtienphongs" ThisKey="Machunhatro" OtherKey="Machunhatro" Type="phieudongtienphong" />
       <Association Name="chunhatro_phongtro" Member="phongtros" ThisKey="Machunhatro" OtherKey="Machunhatro" Type="phongtro" />
     </Type>
@@ -84,6 +77,14 @@
       <Association Name="dichvu_ctdv" Member="dichvu" ThisKey="MaloaiDV" OtherKey="MaloaiDV" Type="dichvu" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.ctlvp" Member="ctlvps">
+    <Type Name="ctlvp">
+      <Column Name="MaloaiVP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Mabienbanvipham" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="bienbanvipham_ctlvp" Member="bienbanvipham" ThisKey="Mabienbanvipham" OtherKey="Mabienbanvipham" Type="bienbanvipham" IsForeignKey="true" />
+      <Association Name="loaivp_ctlvp" Member="loaivp" ThisKey="MaloaiVP" OtherKey="MaloaiVP" Type="loaivp" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.ctpbtddcnt" Member="ctpbtddcnts">
     <Type Name="ctpbtddcnt">
       <Column Name="Magiaybaothaydoidiachi" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -99,8 +100,10 @@
       <Column Name="Donvitinh" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="Dongia" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Hinhthucthanhtoan" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="Thoidiemthanhtoan" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Thoidiemthanhtoan" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Machunhatro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="dichvu_ctdv" Member="ctdvs" ThisKey="MaloaiDV" OtherKey="MaloaiDV" Type="ctdv" />
+      <Association Name="chunhatro_dichvu" Member="chunhatro" ThisKey="Machunhatro" OtherKey="Machunhatro" Type="chunhatro" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.khoa" Member="khoas">
@@ -180,6 +183,7 @@
       <Column Name="SDTgiadinh" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="Machunhatro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Maphongtro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Tienphong" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Association Name="chunhatro_phieudongtienphong" Member="chunhatro" ThisKey="Machunhatro" OtherKey="Machunhatro" Type="chunhatro" IsForeignKey="true" />
       <Association Name="phongtro_phieudongtienphong" Member="phongtro" ThisKey="Maphongtro" OtherKey="Maphongtro" Type="phongtro" IsForeignKey="true" />
     </Type>
@@ -252,7 +256,7 @@
   </Table>
   <Table Name="dbo.sinhvien" Member="sinhviens">
     <Type Name="sinhvien">
-      <Column Name="Masv" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Masv" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Tensv" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Gioitinh" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="Diachi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />

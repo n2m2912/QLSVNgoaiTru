@@ -1,0 +1,72 @@
+﻿@using QLSVNgoaiTru.Models
+@{
+    ViewBag.Title = "Service";
+    Layout = "~/Views/Shared/_LayoutCNT.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/ChuNT/Index">Trang chủ</a>
+    </li>
+    <li class="breadcrumb-item">Phiếu đóng tiền phòng</li>
+</ol>
+<!-- DataTables Example -->
+<div class="card mb-5">
+    <div class="card-header">
+        <div class="float-left">
+            <i class="fas fa-table"></i>Danh sách phiếu đóng tiền phòng
+        </div>
+        <div class="float-right">
+            @Html.ActionLink("Thêm", "AddPhieuDongTienPhong", "ChuNT", null, new { @class = "btn btn-success" })
+            <a class="btn btn-danger text-white text-white" data-toggle="modal" data-target="#deleteModal">Xóa chọn</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" class="select-all"></th>
+                        <th>Mã PDTP</th>
+                        <th>Ngày lập phiếu</th>
+                        <th>Đối tượng ưu tiên</th>
+                        <th>SDT Gia đình</th>
+                        <th>Mã chủ nhà trọ</th>
+                        <th>Mã phòng</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th><input type="checkbox" class="select-all"></th>
+                        <th>Mã PDTP</th>
+                        <th>Ngày lập phiếu</th>
+                        <th>Đối tượng ưu tiên</th>
+                        <th>SDT Gia đình</th>
+                        <th>Mã chủ nhà trọ</th>
+                        <th>Mã phòng</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var pdtp in Model)
+                    {
+                    <tr>
+                        <td><input type="checkbox" class="checkbox"></td>
+                        <td>@pdtp.Maphieudongtienphong</td>
+                        <td>@pdtp.Ngaylapphieu</td>
+                        <td>@pdtp.Doituonguutien</td>
+                        <td>@pdtp.SDTgiadinh</td>
+                        <td>@pdtp.Machunhatro</td>
+                        <td>@pdtp.Maphongtro</td>
+                        <td>
+                            @Html.ActionLink("Sửa", "EditService", "ChuNT", new { id = pdtp.Maphieudongtienphong }, new { @class = "btn btn-info m-1" })
+                            @Html.ActionLink("Xóa", "DeleteServiceByID", "ChuNT", new { id = pdtp.Maphieudongtienphong }, new { @class = "btn btn-danger text-white m-1" })
+                            @*<a class="btn btn-danger text-white m-1" data-toggle="modal" data-target="#deleteModal">Xóa</a>*@
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>

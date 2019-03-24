@@ -1,4 +1,4 @@
-﻿
+﻿@model QLSVNgoaiTru.Models.dichvu
 @{
     ViewBag.Title = "EditService";
     Layout = "~/Views/Shared/_LayoutCNT.cshtml";
@@ -20,46 +20,45 @@
     </div>
     <div class="card-body">
         <div class="col-md-8">
-            <form>
-                <div class="form-group">
-                    <label>Mã chủ phòng: </label>
-                    <input type="text" class="form-control" placeholder="Mã chủ phòng">
-                </div>
-                <div class="form-group">
-                    <label>Tên chủ phòng: </label>
-                    <input type="text" class="form-control" placeholder="Tên chủ phòng">
-                </div>
-                <div class="form-group">
-                    <label>Số điện thoại: </label>
-                    <input type="text" class="form-control" placeholder="Số điện thoại">
-                </div>
-                <div class="form-group">
-                    <label>Hộ khẩu: </label>
-                    <input type="text" class="form-control" placeholder="Hộ khẩu:">
-                </div>
-                <div class="form-group">
-                    <label>Tên dịch vụ: </label>
-                    <input type="text" class="form-control" placeholder="Tên dịch vụ">
-                </div>
-                <div class="form-group">
-                    <label>Đơn vị tính: </label>
-                    <input type="text" class="form-control" placeholder="Đơn vị tính">
-                </div>
-                <div class="form-group">
-                    <label>Đơn giá: </label>
-                    <input type="text" class="form-control" placeholder="Đơn giá">
-                </div>
-                <div class="form-group">
-                    <label>Hình thức thanh toán: </label>
-                    <input type="text" class="form-control" placeholder="Hình thức thanh toán">
-                </div>
-                <div class="form-group">
-                    <label>Thời điểm thanh toán: </label>
-                    <input type="date" class="form-control">
-                </div>
-            </form>
-            <button class="btn btn-success">Đăng</button>
-            <button class="btn btn-secondary">Quay về</button>
+            @using (Html.BeginForm("EditService", "ChuNT", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.MaloaiDV)
+                <form>
+                    <div class="form-group">
+                        <label>Tên dịch vụ: </label>
+                        @*<input type="text" class="form-control" placeholder="Tên dịch vụ">*@
+                        @Html.EditorFor(model => model.TenloaiDV, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenloaiDV, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Đơn vị tính: </label>
+                        @Html.EditorFor(model => model.Donvitinh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Donvitinh, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Đơn giá: </label>
+                        @Html.EditorFor(model => model.Dongia, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Dongia, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Hình thức thanh toán: </label>
+                        @Html.EditorFor(model => model.Hinhthucthanhtoan, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Hinhthucthanhtoan, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Thời điểm thanh toán: </label>
+                        @Html.EditorFor(model => model.Thoidiemthanhtoan, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Thoidiemthanhtoan, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Lưu" class="btn btn-success" />
+                        <button class="btn btn-secondary"><a href="/ChuNT/Service" style="text-decoration:none;color:white"> Quay về</a></button>
+                    </div>
+                </form>
+            }
         </div>
     </div>
 

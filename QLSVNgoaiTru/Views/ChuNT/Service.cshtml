@@ -57,13 +57,13 @@
                             <td>@dichvu.Dongia</td>
                             <td>@dichvu.Hinhthucthanhtoan</td>
                             <td>
-                                @Html.ActionLink("Sửa", "EditService", "ChuNT", null, new { @class = "btn btn-info m-1" })
-                                <a class="btn btn-danger text-white m-1" data-toggle="modal" data-target="#deleteModal">Xóa</a>
+                                @Html.ActionLink("Sửa", "EditService", "ChuNT", new { id = dichvu.MaloaiDV }, new { @class = "btn btn-info m-1" })
+                                @Html.ActionLink("Xóa", "DeleteServiceByID", "ChuNT", new { id = dichvu.MaloaiDV }, new { @class = "btn btn-danger text-white m-1" })
+                                @*<a class="btn btn-danger text-white m-1" data-toggle="modal" data-target="#deleteModal">Xóa</a>*@
                             </td>
                         </tr>
                     }
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
-
+    </div>

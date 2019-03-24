@@ -1,0 +1,53 @@
+﻿@model QLSVNgoaiTru.Models.phieudongtienphong
+@{
+    ViewBag.Title = "AddPhieuDongTienPhong";
+    Layout = "~/Views/Shared/_LayoutCNT.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Trang chủ</a>
+    </li>
+    <li class="breadcrumb-item">Đóng tiền phòng</li>
+</ol>
+<!-- DataTables Example -->
+<div class="card mb-5">
+    <div class="card-header">
+        Đóng tiền phòng
+    </div>
+    <div class="card-body">
+        <div class="col-md-8">
+            @using (Html.BeginForm("AddPhieuDongTienPhong", "ChuNT", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label>Đối tượng ưu tiên: </label>
+                    @Html.EditorFor(model => model.Doituonguutien, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Doituonguutien, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label>Số điện thoại gia đình: </label>
+                    @Html.EditorFor(model => model.SDTgiadinh, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SDTgiadinh, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label>Phòng trọ: </label>
+                        @Html.DropDownList("Maphongtro",null,new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Tiền phòng: </label>
+                    @Html.EditorFor(model => model.Tienphong, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tienphong, "", new { @class = "text-danger" })
+                </div>
+                <div class="pb-2">
+                    <input id="accept" type="checkbox" class="form-control" placeholder="Quy định" style="display:inline; width: 5%" onclick="acceptLic();"></input>
+                    <p style="display:inline">Tôi chấp nhận những quy định.</p>
+                </div>
+                <div class="form-group">
+                    <input id="submit" type="submit" value="Lưu" class="btn btn-success" />
+                    <button class="btn btn-secondary"><a href="/ChuNT/PhieuDongTienPhong" style="text-decoration:none;color:white"> Quay về</a></button>
+                </div>
+            }
+        </div>
+    </div>
+

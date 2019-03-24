@@ -401,14 +401,15 @@
     <Content Include="Views\ChuNT\Index.cshtml" />
     <Content Include="Views\ChuNT\Room.cshtml" />
     <Content Include="Views\ChuNT\Service.cshtml" />
-    <Content Include="Views\ChuNT\DongTienPhong.cshtml" />
+    <Content Include="Views\ChuNT\AddPhieuDongTienPhong.cshtml">
+      <BrowseToURL>~/ChuNT/DongTienPhong</BrowseToURL>
+    </Content>
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Admin\CNTDetail.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\ThemSinhVien.cshtml" />
     <Content Include="Views\Admin\SuaSinhVien.cshtml" />
     <Content Include="Views\Admin\CTSinhVien.cshtml" />
-    <Content Include="Views\ChuNT\AddRoom.cshtml" />
     <Content Include="Views\ChuNT\EditRoom.cshtml" />
     <Content Include="Views\ChuNT\AddService.cshtml" />
     <Content Include="Views\ChuNT\EditService.cshtml" />
@@ -419,6 +420,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\ChuNT\UsernamePartial.cshtml" />
+    <Content Include="Views\ChuNT\AddRoom.cshtml" />
+    <Content Include="Views\ChuNT\DeleteServiceByID.cshtml" />
+    <Content Include="Views\ChuNT\PhieuDongTienPhong.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

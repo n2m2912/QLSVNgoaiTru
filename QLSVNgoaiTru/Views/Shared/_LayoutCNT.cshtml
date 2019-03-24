@@ -68,7 +68,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("DongTienPhong", "ChuNT")">
+                <a class="nav-link" href="@Url.Action("PhieuDongTienPhong", "ChuNT")">
                     <i class="fas fa-file-medical-alt"></i>
                     <span>Phiếu đóng tiền phòng</span>
                 </a>
@@ -150,6 +150,15 @@
                 $(".checkbox").prop('checked', $(this).is(":checked"));
             });
         });
+    </script>
+    <script type="text/javascript">
+        document.getElementById("submit").disabled = true;
+        function acceptLic() {
+            if (document.getElementById("accept").checked == true)
+                document.getElementById("submit").disabled = false;
+            else
+                document.getElementById("submit").disabled = true;
+            }
     </script>
 </body>
 </html>

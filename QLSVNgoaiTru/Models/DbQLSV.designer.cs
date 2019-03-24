@@ -30,9 +30,6 @@ namespace QLSVNgoaiTru.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void Insertctlvp(ctlvp instance);
-    partial void Updatectlvp(ctlvp instance);
-    partial void Deletectlvp(ctlvp instance);
     partial void Insertbienbanvipham(bienbanvipham instance);
     partial void Updatebienbanvipham(bienbanvipham instance);
     partial void Deletebienbanvipham(bienbanvipham instance);
@@ -54,6 +51,9 @@ namespace QLSVNgoaiTru.Models
     partial void Insertctdv(ctdv instance);
     partial void Updatectdv(ctdv instance);
     partial void Deletectdv(ctdv instance);
+    partial void Insertctlvp(ctlvp instance);
+    partial void Updatectlvp(ctlvp instance);
+    partial void Deletectlvp(ctlvp instance);
     partial void Insertctpbtddcnt(ctpbtddcnt instance);
     partial void Updatectpbtddcnt(ctpbtddcnt instance);
     partial void Deletectpbtddcnt(ctpbtddcnt instance);
@@ -137,14 +137,6 @@ namespace QLSVNgoaiTru.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<ctlvp> ctlvps
-		{
-			get
-			{
-				return this.GetTable<ctlvp>();
-			}
-		}
-		
 		public System.Data.Linq.Table<bienbanvipham> bienbanviphams
 		{
 			get
@@ -198,6 +190,14 @@ namespace QLSVNgoaiTru.Models
 			get
 			{
 				return this.GetTable<ctdv>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ctlvp> ctlvps
+		{
+			get
+			{
+				return this.GetTable<ctlvp>();
 			}
 		}
 		
@@ -338,174 +338,6 @@ namespace QLSVNgoaiTru.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ctlvp")]
-	public partial class ctlvp : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MaloaiVP;
-		
-		private int _Mabienbanvipham;
-		
-		private EntityRef<bienbanvipham> _bienbanvipham;
-		
-		private EntityRef<loaivp> _loaivp;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMaloaiVPChanging(int value);
-    partial void OnMaloaiVPChanged();
-    partial void OnMabienbanviphamChanging(int value);
-    partial void OnMabienbanviphamChanged();
-    #endregion
-		
-		public ctlvp()
-		{
-			this._bienbanvipham = default(EntityRef<bienbanvipham>);
-			this._loaivp = default(EntityRef<loaivp>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaloaiVP", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int MaloaiVP
-		{
-			get
-			{
-				return this._MaloaiVP;
-			}
-			set
-			{
-				if ((this._MaloaiVP != value))
-				{
-					if (this._loaivp.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMaloaiVPChanging(value);
-					this.SendPropertyChanging();
-					this._MaloaiVP = value;
-					this.SendPropertyChanged("MaloaiVP");
-					this.OnMaloaiVPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mabienbanvipham", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Mabienbanvipham
-		{
-			get
-			{
-				return this._Mabienbanvipham;
-			}
-			set
-			{
-				if ((this._Mabienbanvipham != value))
-				{
-					if (this._bienbanvipham.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMabienbanviphamChanging(value);
-					this.SendPropertyChanging();
-					this._Mabienbanvipham = value;
-					this.SendPropertyChanged("Mabienbanvipham");
-					this.OnMabienbanviphamChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bienbanvipham_ctlvp", Storage="_bienbanvipham", ThisKey="Mabienbanvipham", OtherKey="Mabienbanvipham", IsForeignKey=true)]
-		public bienbanvipham bienbanvipham
-		{
-			get
-			{
-				return this._bienbanvipham.Entity;
-			}
-			set
-			{
-				bienbanvipham previousValue = this._bienbanvipham.Entity;
-				if (((previousValue != value) 
-							|| (this._bienbanvipham.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._bienbanvipham.Entity = null;
-						previousValue.ctlvps.Remove(this);
-					}
-					this._bienbanvipham.Entity = value;
-					if ((value != null))
-					{
-						value.ctlvps.Add(this);
-						this._Mabienbanvipham = value.Mabienbanvipham;
-					}
-					else
-					{
-						this._Mabienbanvipham = default(int);
-					}
-					this.SendPropertyChanged("bienbanvipham");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="loaivp_ctlvp", Storage="_loaivp", ThisKey="MaloaiVP", OtherKey="MaloaiVP", IsForeignKey=true)]
-		public loaivp loaivp
-		{
-			get
-			{
-				return this._loaivp.Entity;
-			}
-			set
-			{
-				loaivp previousValue = this._loaivp.Entity;
-				if (((previousValue != value) 
-							|| (this._loaivp.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._loaivp.Entity = null;
-						previousValue.ctlvps.Remove(this);
-					}
-					this._loaivp.Entity = value;
-					if ((value != null))
-					{
-						value.ctlvps.Add(this);
-						this._MaloaiVP = value.MaloaiVP;
-					}
-					else
-					{
-						this._MaloaiVP = default(int);
-					}
-					this.SendPropertyChanged("loaivp");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.bienbanvipham")]
 	public partial class bienbanvipham : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -518,9 +350,9 @@ namespace QLSVNgoaiTru.Models
 		
 		private int _Machunhatro;
 		
-		private EntitySet<ctlvp> _ctlvps;
-		
 		private EntitySet<ctbbvp> _ctbbvps;
+		
+		private EntitySet<ctlvp> _ctlvps;
 		
 		private EntityRef<chunhatro> _chunhatro;
 		
@@ -538,8 +370,8 @@ namespace QLSVNgoaiTru.Models
 		
 		public bienbanvipham()
 		{
-			this._ctlvps = new EntitySet<ctlvp>(new Action<ctlvp>(this.attach_ctlvps), new Action<ctlvp>(this.detach_ctlvps));
 			this._ctbbvps = new EntitySet<ctbbvp>(new Action<ctbbvp>(this.attach_ctbbvps), new Action<ctbbvp>(this.detach_ctbbvps));
+			this._ctlvps = new EntitySet<ctlvp>(new Action<ctlvp>(this.attach_ctlvps), new Action<ctlvp>(this.detach_ctlvps));
 			this._chunhatro = default(EntityRef<chunhatro>);
 			OnCreated();
 		}
@@ -608,19 +440,6 @@ namespace QLSVNgoaiTru.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bienbanvipham_ctlvp", Storage="_ctlvps", ThisKey="Mabienbanvipham", OtherKey="Mabienbanvipham")]
-		public EntitySet<ctlvp> ctlvps
-		{
-			get
-			{
-				return this._ctlvps;
-			}
-			set
-			{
-				this._ctlvps.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bienbanvipham_ctbbvp", Storage="_ctbbvps", ThisKey="Mabienbanvipham", OtherKey="Mabienbanvipham")]
 		public EntitySet<ctbbvp> ctbbvps
 		{
@@ -631,6 +450,19 @@ namespace QLSVNgoaiTru.Models
 			set
 			{
 				this._ctbbvps.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bienbanvipham_ctlvp", Storage="_ctlvps", ThisKey="Mabienbanvipham", OtherKey="Mabienbanvipham")]
+		public EntitySet<ctlvp> ctlvps
+		{
+			get
+			{
+				return this._ctlvps;
+			}
+			set
+			{
+				this._ctlvps.Assign(value);
 			}
 		}
 		
@@ -688,18 +520,6 @@ namespace QLSVNgoaiTru.Models
 			}
 		}
 		
-		private void attach_ctlvps(ctlvp entity)
-		{
-			this.SendPropertyChanging();
-			entity.bienbanvipham = this;
-		}
-		
-		private void detach_ctlvps(ctlvp entity)
-		{
-			this.SendPropertyChanging();
-			entity.bienbanvipham = null;
-		}
-		
 		private void attach_ctbbvps(ctbbvp entity)
 		{
 			this.SendPropertyChanging();
@@ -707,6 +527,18 @@ namespace QLSVNgoaiTru.Models
 		}
 		
 		private void detach_ctbbvps(ctbbvp entity)
+		{
+			this.SendPropertyChanging();
+			entity.bienbanvipham = null;
+		}
+		
+		private void attach_ctlvps(ctlvp entity)
+		{
+			this.SendPropertyChanging();
+			entity.bienbanvipham = this;
+		}
+		
+		private void detach_ctlvps(ctlvp entity)
 		{
 			this.SendPropertyChanging();
 			entity.bienbanvipham = null;
@@ -1439,6 +1271,8 @@ namespace QLSVNgoaiTru.Models
 		
 		private EntitySet<biennhanphisinhhoat> _biennhanphisinhhoats;
 		
+		private EntitySet<dichvu> _dichvus;
+		
 		private EntitySet<phieudongtienphong> _phieudongtienphongs;
 		
 		private EntitySet<phongtro> _phongtros;
@@ -1467,12 +1301,13 @@ namespace QLSVNgoaiTru.Models
 			this._bienbanxuliviphams = new EntitySet<bienbanxulivipham>(new Action<bienbanxulivipham>(this.attach_bienbanxuliviphams), new Action<bienbanxulivipham>(this.detach_bienbanxuliviphams));
 			this._biennhancocs = new EntitySet<biennhancoc>(new Action<biennhancoc>(this.attach_biennhancocs), new Action<biennhancoc>(this.detach_biennhancocs));
 			this._biennhanphisinhhoats = new EntitySet<biennhanphisinhhoat>(new Action<biennhanphisinhhoat>(this.attach_biennhanphisinhhoats), new Action<biennhanphisinhhoat>(this.detach_biennhanphisinhhoats));
+			this._dichvus = new EntitySet<dichvu>(new Action<dichvu>(this.attach_dichvus), new Action<dichvu>(this.detach_dichvus));
 			this._phieudongtienphongs = new EntitySet<phieudongtienphong>(new Action<phieudongtienphong>(this.attach_phieudongtienphongs), new Action<phieudongtienphong>(this.detach_phieudongtienphongs));
 			this._phongtros = new EntitySet<phongtro>(new Action<phongtro>(this.attach_phongtros), new Action<phongtro>(this.detach_phongtros));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Machunhatro", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Machunhatro", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int Machunhatro
 		{
 			get
@@ -1572,7 +1407,7 @@ namespace QLSVNgoaiTru.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imagees", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imagees", DbType="NVarChar(500)")]
 		public string Imagees
 		{
 			get
@@ -1641,6 +1476,19 @@ namespace QLSVNgoaiTru.Models
 			set
 			{
 				this._biennhanphisinhhoats.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="chunhatro_dichvu", Storage="_dichvus", ThisKey="Machunhatro", OtherKey="Machunhatro")]
+		public EntitySet<dichvu> dichvus
+		{
+			get
+			{
+				return this._dichvus;
+			}
+			set
+			{
+				this._dichvus.Assign(value);
 			}
 		}
 		
@@ -1733,6 +1581,18 @@ namespace QLSVNgoaiTru.Models
 		}
 		
 		private void detach_biennhanphisinhhoats(biennhanphisinhhoat entity)
+		{
+			this.SendPropertyChanging();
+			entity.chunhatro = null;
+		}
+		
+		private void attach_dichvus(dichvu entity)
+		{
+			this.SendPropertyChanging();
+			entity.chunhatro = this;
+		}
+		
+		private void detach_dichvus(dichvu entity)
 		{
 			this.SendPropertyChanging();
 			entity.chunhatro = null;
@@ -2147,6 +2007,174 @@ namespace QLSVNgoaiTru.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ctlvp")]
+	public partial class ctlvp : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MaloaiVP;
+		
+		private int _Mabienbanvipham;
+		
+		private EntityRef<bienbanvipham> _bienbanvipham;
+		
+		private EntityRef<loaivp> _loaivp;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMaloaiVPChanging(int value);
+    partial void OnMaloaiVPChanged();
+    partial void OnMabienbanviphamChanging(int value);
+    partial void OnMabienbanviphamChanged();
+    #endregion
+		
+		public ctlvp()
+		{
+			this._bienbanvipham = default(EntityRef<bienbanvipham>);
+			this._loaivp = default(EntityRef<loaivp>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaloaiVP", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int MaloaiVP
+		{
+			get
+			{
+				return this._MaloaiVP;
+			}
+			set
+			{
+				if ((this._MaloaiVP != value))
+				{
+					if (this._loaivp.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaloaiVPChanging(value);
+					this.SendPropertyChanging();
+					this._MaloaiVP = value;
+					this.SendPropertyChanged("MaloaiVP");
+					this.OnMaloaiVPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mabienbanvipham", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Mabienbanvipham
+		{
+			get
+			{
+				return this._Mabienbanvipham;
+			}
+			set
+			{
+				if ((this._Mabienbanvipham != value))
+				{
+					if (this._bienbanvipham.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMabienbanviphamChanging(value);
+					this.SendPropertyChanging();
+					this._Mabienbanvipham = value;
+					this.SendPropertyChanged("Mabienbanvipham");
+					this.OnMabienbanviphamChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="bienbanvipham_ctlvp", Storage="_bienbanvipham", ThisKey="Mabienbanvipham", OtherKey="Mabienbanvipham", IsForeignKey=true)]
+		public bienbanvipham bienbanvipham
+		{
+			get
+			{
+				return this._bienbanvipham.Entity;
+			}
+			set
+			{
+				bienbanvipham previousValue = this._bienbanvipham.Entity;
+				if (((previousValue != value) 
+							|| (this._bienbanvipham.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._bienbanvipham.Entity = null;
+						previousValue.ctlvps.Remove(this);
+					}
+					this._bienbanvipham.Entity = value;
+					if ((value != null))
+					{
+						value.ctlvps.Add(this);
+						this._Mabienbanvipham = value.Mabienbanvipham;
+					}
+					else
+					{
+						this._Mabienbanvipham = default(int);
+					}
+					this.SendPropertyChanged("bienbanvipham");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="loaivp_ctlvp", Storage="_loaivp", ThisKey="MaloaiVP", OtherKey="MaloaiVP", IsForeignKey=true)]
+		public loaivp loaivp
+		{
+			get
+			{
+				return this._loaivp.Entity;
+			}
+			set
+			{
+				loaivp previousValue = this._loaivp.Entity;
+				if (((previousValue != value) 
+							|| (this._loaivp.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._loaivp.Entity = null;
+						previousValue.ctlvps.Remove(this);
+					}
+					this._loaivp.Entity = value;
+					if ((value != null))
+					{
+						value.ctlvps.Add(this);
+						this._MaloaiVP = value.MaloaiVP;
+					}
+					else
+					{
+						this._MaloaiVP = default(int);
+					}
+					this.SendPropertyChanged("loaivp");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ctpbtddcnt")]
 	public partial class ctpbtddcnt : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2331,9 +2359,13 @@ namespace QLSVNgoaiTru.Models
 		
 		private string _Hinhthucthanhtoan;
 		
-		private System.Nullable<System.DateTime> _Thoidiemthanhtoan;
+		private string _Thoidiemthanhtoan;
+		
+		private int _Machunhatro;
 		
 		private EntitySet<ctdv> _ctdvs;
+		
+		private EntityRef<chunhatro> _chunhatro;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2349,13 +2381,16 @@ namespace QLSVNgoaiTru.Models
     partial void OnDongiaChanged();
     partial void OnHinhthucthanhtoanChanging(string value);
     partial void OnHinhthucthanhtoanChanged();
-    partial void OnThoidiemthanhtoanChanging(System.Nullable<System.DateTime> value);
+    partial void OnThoidiemthanhtoanChanging(string value);
     partial void OnThoidiemthanhtoanChanged();
+    partial void OnMachunhatroChanging(int value);
+    partial void OnMachunhatroChanged();
     #endregion
 		
 		public dichvu()
 		{
 			this._ctdvs = new EntitySet<ctdv>(new Action<ctdv>(this.attach_ctdvs), new Action<ctdv>(this.detach_ctdvs));
+			this._chunhatro = default(EntityRef<chunhatro>);
 			OnCreated();
 		}
 		
@@ -2459,8 +2494,8 @@ namespace QLSVNgoaiTru.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Thoidiemthanhtoan", DbType="Date")]
-		public System.Nullable<System.DateTime> Thoidiemthanhtoan
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Thoidiemthanhtoan", DbType="NVarChar(500)")]
+		public string Thoidiemthanhtoan
 		{
 			get
 			{
@@ -2479,6 +2514,30 @@ namespace QLSVNgoaiTru.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Machunhatro", DbType="Int NOT NULL")]
+		public int Machunhatro
+		{
+			get
+			{
+				return this._Machunhatro;
+			}
+			set
+			{
+				if ((this._Machunhatro != value))
+				{
+					if (this._chunhatro.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMachunhatroChanging(value);
+					this.SendPropertyChanging();
+					this._Machunhatro = value;
+					this.SendPropertyChanged("Machunhatro");
+					this.OnMachunhatroChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="dichvu_ctdv", Storage="_ctdvs", ThisKey="MaloaiDV", OtherKey="MaloaiDV")]
 		public EntitySet<ctdv> ctdvs
 		{
@@ -2489,6 +2548,40 @@ namespace QLSVNgoaiTru.Models
 			set
 			{
 				this._ctdvs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="chunhatro_dichvu", Storage="_chunhatro", ThisKey="Machunhatro", OtherKey="Machunhatro", IsForeignKey=true)]
+		public chunhatro chunhatro
+		{
+			get
+			{
+				return this._chunhatro.Entity;
+			}
+			set
+			{
+				chunhatro previousValue = this._chunhatro.Entity;
+				if (((previousValue != value) 
+							|| (this._chunhatro.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._chunhatro.Entity = null;
+						previousValue.dichvus.Remove(this);
+					}
+					this._chunhatro.Entity = value;
+					if ((value != null))
+					{
+						value.dichvus.Add(this);
+						this._Machunhatro = value.Machunhatro;
+					}
+					else
+					{
+						this._Machunhatro = default(int);
+					}
+					this.SendPropertyChanged("chunhatro");
+				}
 			}
 		}
 		
@@ -3928,6 +4021,8 @@ namespace QLSVNgoaiTru.Models
 		
 		private int _Maphongtro;
 		
+		private System.Nullable<double> _Tienphong;
+		
 		private EntityRef<chunhatro> _chunhatro;
 		
 		private EntityRef<phongtro> _phongtro;
@@ -3948,6 +4043,8 @@ namespace QLSVNgoaiTru.Models
     partial void OnMachunhatroChanged();
     partial void OnMaphongtroChanging(int value);
     partial void OnMaphongtroChanged();
+    partial void OnTienphongChanging(System.Nullable<double> value);
+    partial void OnTienphongChanged();
     #endregion
 		
 		public phieudongtienphong()
@@ -4081,6 +4178,26 @@ namespace QLSVNgoaiTru.Models
 					this._Maphongtro = value;
 					this.SendPropertyChanged("Maphongtro");
 					this.OnMaphongtroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tienphong", DbType="Float")]
+		public System.Nullable<double> Tienphong
+		{
+			get
+			{
+				return this._Tienphong;
+			}
+			set
+			{
+				if ((this._Tienphong != value))
+				{
+					this.OnTienphongChanging(value);
+					this.SendPropertyChanging();
+					this._Tienphong = value;
+					this.SendPropertyChanged("Tienphong");
+					this.OnTienphongChanged();
 				}
 			}
 		}
@@ -5706,7 +5823,7 @@ namespace QLSVNgoaiTru.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Masv", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Masv", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int Masv
 		{
 			get
