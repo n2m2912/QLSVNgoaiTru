@@ -5,20 +5,20 @@
 }
 
 <h1 class="mt-4 mb-3">
-    Chi tiết phòng trọ
+    Thông tin phòng
 </h1>
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
-        <a href="/Home/Index">Home</a>
+        <a href="index">Home</a>
     </li>
-    <li class="breadcrumb-item active">Phòng trọ ID: @Html.DisplayFor(model => model.phongtro.Maphongtro)</li>
+    <li class="breadcrumb-item active">Thông tin phòng @Html.DisplayFor(model => model.phongtro.Sophong)</li>
 </ol>
 <!-- Portfolio Item Row -->
 <div class="row">
-    <div class="col-md-8">
-        <img class="img-fluid w-auto h-auto" alt="" src="~/images/@Html.DisplayFor(model => model.phongtro.Images)" />
+    <div class="col-md-6 h-75">
+        <img class="img-fluid w-100 h-50" alt="" src="~/images/phongtro/@Html.DisplayFor(model => model.phongtro.Images)" />
 
-        @*<h5 class="my-4">Hình ảnh liên quan</h5>
+        <h5 class="my-4">Hình ảnh liên quan</h5>
         <div class="row">
             <div class="col-md-3 col-sm-6 mb-4">
                 <a href="#">
@@ -40,9 +40,10 @@
                     <img class="img-fluid" src="http://placehold.it/500x300" alt="">
                 </a>
             </div>
-        </div>*@
+        </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
+        <h2>Phòng số:  @Html.DisplayFor(model => model.phongtro.Sophong)</h2>
         <h3 class="my-3">Thông tin phòng</h3>
         <p> @Html.DisplayFor(model => model.phongtro.Mota)</p>
         <h3 class="my-3">Nội quy</h3>
@@ -54,36 +55,34 @@
 
 </div>
 <!-- /.row -->
+<!--
 <div class="row">
-    <!-- map column -->
     <div class="col-lg-8 mb-4">
-        <!-- embedded google map -->
-        <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?hl=en&amp;ie=utf8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe>
+        <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe>
     </div>
-    <!-- contact details column -->
     <div class="col-lg-4 mb-4">
-        <h3>contact details</h3>
+        <h3>Contact Details</h3>
         <p>
-            3481 melrose place
-            <br>beverly hills, ca 90210
+            3481 Melrose Place
+            <br>Beverly Hills, CA 90210
             <br>
         </p>
         <p>
-            <abbr title="phone">p</abbr>: (123) 456-7890
+            <abbr title="Phone">P</abbr>: (123) 456-7890
         </p>
         <p>
-            <abbr title="email">e</abbr>:
+            <abbr title="Email">E</abbr>:
             <a href="mailto:name@example.com">
                 name@example.com
             </a>
         </p>
         <p>
-            <abbr title="hours">h</abbr>: monday - friday: 9:00 am to 5:00 pm
+            <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM
         </p>
     </div>
-</div>
+</div>-->
 <!-- Related Projects Row -->
-@*<h3 class="my-4">Phòng cùng giá</h3>
+<h3 class="my-4">Phòng cùng giá</h3>
 <div class="row">
     <div class="col-md-3 col-sm-6 mb-4">
         <a href="#">
@@ -105,5 +104,5 @@
             <img class="img-fluid" src="http://placehold.it/500x300" alt="">
         </a>
     </div>
-</div>*@
+</div>
 

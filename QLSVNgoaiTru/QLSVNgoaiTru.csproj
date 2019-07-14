@@ -162,12 +162,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CustomObject.cs" />
+    <Compile Include="Models\ChiTietCNT.cs" />
+    <Compile Include="Models\ChiTietSinhVien.cs" />
+    <Compile Include="Models\ChiTietPhongTro.cs" />
+    <Compile Include="Models\DanhSachPhieu.cs" />
+    <Compile Include="Models\DanhSachSinhVien.cs" />
     <Compile Include="Models\DbQLSV.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DbQLSV.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViPham.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -367,6 +372,10 @@
     <Content Include="vendor\jquery\jquery.min.js" />
     <Content Include="vendor\jquery\jquery.slim.js" />
     <Content Include="vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Views\Shared\admin-cnt.html" />
+    <Content Include="Views\Shared\dang-ki-ngoai-tru.html" />
+    <Content Include="Views\Shared\dang-ki-tim-phong-tro.html" />
+    <Content Include="Views\Shared\index.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -377,6 +386,8 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutIndex.cshtml" />
     <Content Include="vendor\jquery\jquery.min.map" />
@@ -391,6 +402,7 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\ChuNT\Themchunhatro.cshtml" />
     <Content Include="Views\ChuNT\Xoachutro.cshtml" />
+    <Content Include="Views\Shared\_LayoutDangky.cshtml" />
     <Content Include="Views\Sinhvien\Dkngoaitru.cshtml" />
     <Content Include="Views\Sinhvien\Dktimphongtro.cshtml" />
     <Content Include="Views\Sinhvien\Dkthaydoidiachi.cshtml" />
@@ -400,10 +412,6 @@
     <Content Include="Views\Admin\Sinhvien.cshtml" />
     <Content Include="Views\ChuNT\Index.cshtml" />
     <Content Include="Views\ChuNT\Room.cshtml" />
-    <Content Include="Views\ChuNT\Service.cshtml" />
-    <Content Include="Views\ChuNT\AddPhieuDongTienPhong.cshtml">
-      <BrowseToURL>~/ChuNT/DongTienPhong</BrowseToURL>
-    </Content>
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Admin\CNTDetail.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
@@ -411,20 +419,50 @@
     <Content Include="Views\Admin\SuaSinhVien.cshtml" />
     <Content Include="Views\Admin\CTSinhVien.cshtml" />
     <Content Include="Views\ChuNT\EditRoom.cshtml" />
-    <Content Include="Views\ChuNT\AddService.cshtml" />
     <Content Include="Views\ChuNT\EditService.cshtml" />
     <Content Include="Views\Home\MoreRooms.cshtml" />
     <Content Include="Views\Home\MoreNews.cshtml" />
-    <Content Include="Views\Home\UsernamePartial.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\FAQ.cshtml" />
-    <Content Include="Views\ChuNT\UsernamePartial.cshtml" />
-    <Content Include="Views\ChuNT\AddRoom.cshtml" />
-    <Content Include="Views\ChuNT\DeleteServiceByID.cshtml" />
+    <Content Include="Views\Admin\Suachunhatro.cshtml" />
+    <Content Include="Views\Admin\Service.cshtml" />
+    <Content Include="Views\ChuNT\CTService.cshtml" />
+    <Content Include="Views\Admin\AddService.cshtml" />
+    <Content Include="Views\ChuNT\AddCTService.cshtml" />
+    <Content Include="Views\ChuNT\EditCTService.cshtml" />
     <Content Include="Views\ChuNT\PhieuDongTienPhong.cshtml" />
+    <Content Include="Views\ChuNT\AddPhieuDongTienPhong.cshtml" />
+    <Content Include="Views\Admin\EditService.cshtml" />
+    <Content Include="Views\Admin\Faculty.cshtml" />
+    <Content Include="Views\Admin\AddFaculty.cshtml" />
+    <Content Include="Views\Admin\EditFaculty.cshtml" />
+    <Content Include="Views\Admin\City.cshtml" />
+    <Content Include="Views\Admin\AddCity.cshtml" />
+    <Content Include="Views\Admin\EditCity.cshtml" />
+    <Content Include="Views\Admin\Classes.cshtml" />
+    <Content Include="Views\Admin\AddClass.cshtml" />
+    <Content Include="Views\Admin\EditClass.cshtml" />
+    <Content Include="Views\Admin\Ward.cshtml" />
+    <Content Include="Views\Admin\AddWard.cshtml" />
+    <Content Include="Views\Admin\EditWard.cshtml" />
+    <Content Include="Views\Admin\Rule.cshtml" />
+    <Content Include="Views\Admin\AddRule.cshtml" />
+    <Content Include="Views\Admin\EditRule.cshtml" />
+    <Content Include="Views\ChuNT\BienBanViPham.cshtml" />
+    <Content Include="Views\Sinhvien\ThemDkthaydoidiachi.cshtml" />
+    <Content Include="Views\Sinhvien\SuaDkthaydoidiachi.cshtml" />
+    <Content Include="Views\Admin\PhieuXacNhanThongTinNgoaiTru.cshtml" />
+    <Content Include="Views\Admin\DuyetPhieuXacNhanThongTinNgoaiTru.cshtml" />
+    <Content Include="Views\Sinhvien\PhieuXacNhanThongTinNgoaiTru.cshtml" />
+    <Content Include="Views\Sinhvien\SuaPhieuXacNhanThongTinNgoaiTru.cshtml" />
+    <Content Include="Views\ChuNT\SuaPhieuDongTienPhong.cshtml" />
+    <Content Include="Views\ChuNT\ThemBienBanViPham.cshtml" />
+    <Content Include="Views\Sinhvien\DanhSachPhieu.cshtml" />
+    <Content Include="Views\Admin\DuyetPhieuGioiThieuSinhVienNgoaiTru.cshtml" />
+    <Content Include="Views\ChuNT\AddRooms.cshtml" />
+    <Content Include="Views\Admin\GetStatistic.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="images\phongtro\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="App_Data\fonts\glyphicons-halflings-regular.woff" />

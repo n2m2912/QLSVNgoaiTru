@@ -3,16 +3,16 @@
 @model PagedList.PagedList<phongtro>
 @{
     ViewBag.Title = "MoreRooms";
-    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+    Layout = "~/Views/Shared/_LayoutDangky.cshtml";
 }
 <h1 class="mt-4 mb-3">
     Danh sách phòng
 </h1>
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
+        <a href="index">Home</a>
     </li>
-    <li class="breadcrumb-item active">Portfolio 3</li>
+    <li class="breadcrumb-item active">Danh sách phòng</li>
 </ol>
 <div class="row">
     @foreach (var phong in Model)
@@ -20,11 +20,11 @@
         <div class="col-lg-4 col-sm-6 portfolio-item">
             <div class="card h-100">
                 <a href="@Url.Action("Detail", "Home", new {id =phong.Maphongtro })">
-                    <img class="img-fluid card-img-top" alt="" src="~/images/@phong.Images" style="width:100%;height:300px;object-fit: cover;" />
+                    <img class="img-fluid card-img-top" alt="" src="~/images/phongtro/@phong.Images" style="width:100%;height:300px;object-fit: cover;" />
                 </a>
                 <div class="card-body">
                     <h4 class="card-title">
-                        <a href="@Url.Action("Detail", "Home")">@phong.Tenphong</a>
+                        <a href="@Url.Action("Detail", "Home")">@phong.Sophong</a>
                     </h4>
                     <p class="card-text">@phong.Mota</p>
                 </div>

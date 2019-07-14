@@ -1,20 +1,22 @@
-﻿@using QLSVNgoaiTru.Models
+﻿@model IEnumerable<QLSVNgoaiTru.Models.phieudongtienphong>
 @{
-    ViewBag.Title = "Service";
-    Layout = "~/Views/Shared/_LayoutCNT.cshtml";
+                /**/
+
+                ViewBag.Title = "PhieuDongTienPhong";
+                Layout = "~/Views/Shared/_LayoutCNT.cshtml";
 }
 
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
-        <a href="/ChuNT/Index">Trang chủ</a>
+        <a href="#">Trang chủ</a>
     </li>
-    <li class="breadcrumb-item">Phiếu đóng tiền phòng</li>
+    <li class="breadcrumb-item">Dịch vụ</li>
 </ol>
 <!-- DataTables Example -->
 <div class="card mb-5">
     <div class="card-header">
         <div class="float-left">
-            <i class="fas fa-table"></i>Danh sách phiếu đóng tiền phòng
+            <i class="fas fa-table"></i>Danh sách dịch vụ
         </div>
         <div class="float-right">
             @Html.ActionLink("Thêm", "AddPhieuDongTienPhong", "ChuNT", null, new { @class = "btn btn-success" })
@@ -27,24 +29,20 @@
                 <thead>
                     <tr>
                         <th><input type="checkbox" class="select-all"></th>
-                        <th>Mã PDTP</th>
+                        <th>Mã phiếu đóng tiền phòng</th>
                         <th>Ngày lập phiếu</th>
-                        <th>Đối tượng ưu tiên</th>
-                        <th>SDT Gia đình</th>
-                        <th>Mã chủ nhà trọ</th>
-                        <th>Mã phòng</th>
+                        <th>Số tiền</th>
+                        <th>Mã phòng trọ</th>
                         <th>Chức năng</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th><input type="checkbox" class="select-all"></th>
-                        <th>Mã PDTP</th>
+                        <th>Mã phiếu đóng tiền phòng</th>
                         <th>Ngày lập phiếu</th>
-                        <th>Đối tượng ưu tiên</th>
-                        <th>SDT Gia đình</th>
-                        <th>Mã chủ nhà trọ</th>
-                        <th>Mã phòng</th>
+                        <th>Số tiền</th>
+                        <th>Mã phòng trọ</th>
                         <th>Chức năng</th>
                     </tr>
                 </tfoot>
@@ -54,15 +52,12 @@
                     <tr>
                         <td><input type="checkbox" class="checkbox"></td>
                         <td>@pdtp.Maphieudongtienphong</td>
-                        <td>@pdtp.Ngaylapphieu</td>
-                        <td>@pdtp.Doituonguutien</td>
-                        <td>@pdtp.SDTgiadinh</td>
-                        <td>@pdtp.Machunhatro</td>
+                        <td>@pdtp.Ngaylap</td>
+                        <td>@pdtp.SoTien</td>
                         <td>@pdtp.Maphongtro</td>
                         <td>
-                            @Html.ActionLink("Sửa", "EditService", "ChuNT", new { id = pdtp.Maphieudongtienphong }, new { @class = "btn btn-info m-1" })
-                            @Html.ActionLink("Xóa", "DeleteServiceByID", "ChuNT", new { id = pdtp.Maphieudongtienphong }, new { @class = "btn btn-danger text-white m-1" })
-                            @*<a class="btn btn-danger text-white m-1" data-toggle="modal" data-target="#deleteModal">Xóa</a>*@
+                            @Html.ActionLink("Sửa", "SuaPhieuDongTienPhong", "ChuNT", new { id = pdtp.Maphieudongtienphong}, new { @class = "btn btn-info m-1" })
+                            @Html.ActionLink("Xóa", "XoaPhieuDongTienPhong", "ChuNT", new { id = pdtp.Maphieudongtienphong }, new { @class = "btn btn-danger text-white m-1", @onclick = "return confirm('Bạn muốn xóa sinh viên này?');" })
                         </td>
                     </tr>
                     }
@@ -70,3 +65,5 @@
             </table>
         </div>
     </div>
+
+

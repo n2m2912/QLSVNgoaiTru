@@ -12,31 +12,51 @@ namespace QLSVNgoaiTru.Controllers
     {
         readonly DbQLSVDataContext Db = new DbQLSVDataContext();
 
-        [HttpPost]
-        public ActionResult Login(FormCollection collection)
+        public ActionResult Logout()
         {
-            Session["LoggedCNT"] = null;
-            Session["LoggedSV"] = null;
-            Session["LoggedAD"] = null;
-            var tendn = collection["username"];
-            var matkhau = collection["password"];
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult Index(FormCollection collection)
+        {
+            Session["LoggedCNT"] = "";
+            Session["LoggedSV"] = "";
+            Session["LoggedAD"] = "";
             chunhatro cnt = new chunhatro();
             sinhvien sv = new sinhvien();
-            if(Db.chunhatros.SingleOrDefault(n => n.SDT == Convert.ToInt32(tendn) && n.Pass == matkhau) != null)
+            nguoidung admin = new nguoidung();
+            var tendn = collection["username"];
+            var matkhau = collection["password"];
+            if (String.IsNullOrEmpty(tendn))
             {
-                cnt = Db.chunhatros.SingleOrDefault(n => n.SDT == Convert.ToInt32(tendn) && n.Pass == matkhau);
-                Session["LoggedCNT"] = cnt;
-                return RedirectToAction("Index", "ChuNT");
-            } else if(Db.sinhviens.SingleOrDefault(n => n.Masv == Convert.ToInt32(tendn) && n.Pass == matkhau) != null)
+                ViewData["Loi1"] = "Phải nhập tên đăng nhập";
+            }
+            else if (String.IsNullOrEmpty(matkhau))
             {
-                sv = Db.sinhviens.SingleOrDefault(n => n.Masv == Convert.ToInt32(tendn) && n.Pass == matkhau);
-                Session["LoggedSV"] = sv;
-                return RedirectToAction("Index", "Home");
+                ViewData["Loi2"] = "Phải nhập mật khẩu";
             }
             else
             {
+                
+                    cnt = Db.chunhatros.SingleOrDefault(n => n.Machunhatro == tendn  && n.Pass == matkhau);
+                    sv = Db.sinhviens.SingleOrDefault(n => n.Masv == tendn && n.Pass == matkhau);
+                
 
-                ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng";
+                if (cnt!= null)
+                {
+                    Session["LoggedCNT"] = cnt;
+                    Session["cnt"] = cnt.Tenchunhatro;
+                    return RedirectToAction("Index", "ChuNT");
+                }
+                else if (sv != null)
+                {
+                    Session["LoggedSV"] = sv;
+                    return RedirectToAction("Index");
+                }
+                else
+                    ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng";
             }
             return View();
         }
@@ -49,12 +69,30 @@ namespace QLSVNgoaiTru.Controllers
         // GET: SinhVienNT
         public ActionResult Index()
         {
+            if(Session["LoggedSV"] != null)
+            {
+                sinhvien sv = (sinhvien)Session["LoggedSV"];
+                ViewBag.sinhvien = sv.Tensv;
+            }
+            else
+            {
+                ViewBag.sinhvien = "Chưa đăng nhập";
+            }
             var phong = Layphong(50);
             return View(phong);
         }
         public ActionResult Detail(int id)
         {
-            CustomObject co = new CustomObject();
+            if (Session["LoggedSV"] != null)
+            {
+                sinhvien sv = (sinhvien)Session["LoggedSV"];
+                ViewBag.sinhvien = sv.Tensv;
+            }
+            else
+            {
+                ViewBag.sinhvien = "Chưa đăng nhập";
+            }
+            ChiTietPhongTro co = new ChiTietPhongTro();
             co.phongtro = Db.phongtros.SingleOrDefault(n => n.Maphongtro == id);
             co.chunhatro = Db.chunhatros.SingleOrDefault(n => n.Machunhatro == co.phongtro.Machunhatro);
             ViewBag.Maphongtro = co.phongtro.Maphongtro;
@@ -76,51 +114,5 @@ namespace QLSVNgoaiTru.Controllers
         {
             return View();
         }
-
-        public ActionResult Logout()
-        {
-            Session["LoggedCNT"] = null;
-            Session["LoggedSV"] = null;
-            Session["LoggedAD"] = null;
-            UsernamePartial();
-            var phong = Layphong(50);
-            return View("Index",phong);
-        }
-
-        public ActionResult UsernamePartial()
-        {
-            if(Session["LoggedCNT"] != null)
-            {
-                var cnt = (chunhatro)Session["LoggedCNT"];
-                ViewBag.Username = cnt.Tenchunhatro;
-            }
-            else if (Session["LoggedSV"] != null)
-            {
-                var sv = (sinhvien)Session["LoggedSV"];
-                ViewBag.Username = sv.Tensv;
-            } else
-            {
-                ViewBag.Username = "Chưa đăng nhập";
-            }
-            
-            return PartialView();
-        }
-        
-
-        public ActionResult Login()
-        {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            return View();
-        }
-
-        public ActionResult FAQ()
-        {
-            return View();
-        }
-
     }
 }

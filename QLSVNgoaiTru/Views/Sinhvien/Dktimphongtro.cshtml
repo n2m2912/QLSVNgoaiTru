@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutDangky.cshtml";
 }
 
-@using (Html.BeginForm("Dkngoaitru", "Sinhvien", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Dktimphongtro", "Sinhvien", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <h1 class="mt-5 mb-3">
@@ -22,57 +22,9 @@
             <form name="sentMessage" id="contactForm" novalidate>
                 <div class="control-group form-group">
                     <div class="controls">
-                        <label>MSSV:</label>
-                        <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
+                        <label>Vị trí phòng trọ mong muốn:</label>
+                        @Html.DropDownListFor(model => model.Maquanhuyen, new SelectList(ViewBag.quanhuyen, "Maquanhuyen", "Tenquanhuyen"), new { htmlAttributes = new { @class = "form-control" } })
                         <p class="help-block"></p>
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Tên sinh viên:</label>
-                        <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Mã lớp:</label>
-                        <input type="text" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Niên khóa</label>
-                        <input type="text" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Số điện thoại cá nhân:</label>
-                        <input type="tel" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Số điện thoại gia đình:</label>
-                        <input type="tel" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Địa chỉ:</label>
-                        <input type="text" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Đối tượng ưu tiên:</label>
-                        <input type="text" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
-                    </div>
-                </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label>Ngày lập:</label>
-                        <input type="date" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
                     </div>
                 </div>
                 <div id="success"></div>

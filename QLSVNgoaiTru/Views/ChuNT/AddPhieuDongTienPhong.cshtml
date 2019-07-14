@@ -1,4 +1,5 @@
 ﻿@model QLSVNgoaiTru.Models.phieudongtienphong
+
 @{
     ViewBag.Title = "AddPhieuDongTienPhong";
     Layout = "~/Views/Shared/_LayoutCNT.cshtml";
@@ -17,37 +18,30 @@
     </div>
     <div class="card-body">
         <div class="col-md-8">
-            @using (Html.BeginForm("AddPhieuDongTienPhong", "ChuNT", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("AddPhieuDongTienPhong", "ChuNT", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
+            <form>
                 <div class="form-group">
-                    <label>Đối tượng ưu tiên: </label>
-                    @Html.EditorFor(model => model.Doituonguutien, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Doituonguutien, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label>Số điện thoại gia đình: </label>
-                    @Html.EditorFor(model => model.SDTgiadinh, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SDTgiadinh, "", new { @class = "text-danger" })
+                    <label>Ngày lập phiếu: </label>
+                    @Html.EditorFor(model => model.Ngaylap, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
                 <div class="form-group">
-                    <label>Phòng trọ: </label>
-                        @Html.DropDownList("Maphongtro",null,new { @class = "form-control" })
+                    <label>Phòng: </label>
+                    @Html.DropDownListFor(model => model.Maphongtro, new SelectList(ViewBag.Phong, "Maphongtro", "Sophong"), new { htmlAttributes = new { @class = "form-control" } })
                 </div>
                 <div class="form-group">
-                    <label>Tiền phòng: </label>
-                    @Html.EditorFor(model => model.Tienphong, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Tienphong, "", new { @class = "text-danger" })
-                </div>
-                <div class="pb-2">
-                    <input id="accept" type="checkbox" class="form-control" placeholder="Quy định" style="display:inline; width: 5%" onclick="acceptLic();"></input>
-                    <p style="display:inline">Tôi chấp nhận những quy định.</p>
+                    <label>Số tiền: </label>
+                    @Html.EditorFor(model => model.SoTien, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
                 <div class="form-group">
-                    <input id="submit" type="submit" value="Lưu" class="btn btn-success" />
-                    <button class="btn btn-secondary"><a href="/ChuNT/PhieuDongTienPhong" style="text-decoration:none;color:white"> Quay về</a></button>
+                    <input type="submit" value="Lưu" class="btn btn-success" />
+                    @ViewBag.Thongbaosave
+                    <button class="btn btn-secondary">Quay về</button>
                 </div>
+            </form>
             }
         </div>
     </div>
+
 

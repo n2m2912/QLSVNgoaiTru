@@ -17,7 +17,7 @@
             <i class="fas fa-table"></i>Danh sách phòng
         </div>
         <div class="float-right">
-            @Html.ActionLink("Thêm", "AddRoom", "ChuNT", null, new { @class = "btn btn-success" })
+            @Html.ActionLink("Thêm", "AddRooms", "ChuNT", null, new { @class = "btn btn-success" })
             <a class="btn btn-danger text-white text-white" data-toggle="modal" data-target="#deleteModal">Xóa chọn</a>
         </div>
     </div>
@@ -28,7 +28,7 @@
                     <tr>
                         <th><input type="checkbox" class="select-all"></th>
                         <th>Mã phòng</th>
-                        <th>Tên</th>
+                        
                         <th>Mô tả</th>
                         <th>Tiền cọc</th>
                         <th>Hình</th>
@@ -39,7 +39,7 @@
                     <tr>
                         <th><input type="checkbox" class="select-all"></th>
                         <th>Mã phòng</th>
-                        <th>Tên</th>
+                        
                         <th>Mô tả</th>
                         <th>Tiền cọc</th>
                         <th>Hình</th>
@@ -52,15 +52,15 @@
                     <tr>
                         <td><input type="checkbox" class="checkbox"></td>
                         <td>@phong.Maphongtro</td>
-                        <td>@phong.Tenphong</td>
+
                         <td>@phong.Mota</td>
                         <td>@phong.Tiendatcoc</td>
                         <td>
-                            <img src="@Url.Content("~/images/" + phong.Images)" style="width:170px;height:30%" />
+                            <img src="@Url.Content("~/images/phongtro/" + phong.Images)" style="width:170px;height:30%" />
                         </td>
                         <td>
                             @Html.ActionLink("Sửa", "EditRoom", "ChuNT", new { id = phong.Maphongtro }, new { @class = "btn btn-info m-1" })
-                            <a class="btn btn-danger text-white m-1" data-toggle="modal" data-target="#deleteModal">Xóa</a>
+                            @Html.ActionLink("Xóa", "DeleteRoom", "ChuNT", new { id = phong.Maphongtro }, new { @class = "btn btn-danger text-white m-1", @onclick = "return confirm('Bạn muốn xóa phòng này?');" })
                         </td>
                     </tr>
 

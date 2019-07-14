@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>SB Admin - Tables</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <!-- Bootstrap core CSS-->
     <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template-->
@@ -14,12 +15,17 @@
     <!-- Page level plugin CSS-->
     <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom styles for this template-->
+    <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="~/css/sb-admin.css" rel="stylesheet">
-    <link href="~/css/custom.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
+
+    <link href="https://uxsolutions.github.io/bootstrap-datepicker/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <!--<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />-->
 </head>
 <body id="page-top">
     <nav class="navbar navbar-expand navbar-light bg-light static-top">
-        <a class="navbar-brand mr-1" href="@Url.Action("Index","Home")"><img src="~/logo/HUTECH.png"  style="width:140px; height:37px"></a>
+        <a class="navbar-brand mr-1" href="@Url.Action("Index","Home")"><img src="~/logo/HUTECH.png" style="width:140px; height:37px"></a>
 
         <!-- Navbar Search -->
         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -46,25 +52,69 @@
             <li class="nav-item ">
                 <a class="nav-link " href="@Url.Action("SinhVien", "Admin")">
                     <i class="fas fa-user-circle"></i>
-                    <span>Sinh viên</span>
+                    <span>Quản lý sinh viên</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="@Url.Action("Chunhatro", "Admin")">
                     <i class="fas fa-concierge-bell"></i>
-                    <span>Chủ nhà trọ</span>
+                    <span>Quản lý chủ nhà trọ</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Service", "Admin")">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span>Quản lý dịch vụ</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Faculty", "Admin")">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span>Quản lý khoa</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("City", "Admin")">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span>Quản lý tỉnh thành phố</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Classes", "Admin")">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span>Quản lý lớp</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Ward", "Admin")">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span>Quản lý quận huyện</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Rule", "Admin")">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span>Quản lý loại vi phạm</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("PhieuXacNhanThongTinNgoaiTru", "Admin")">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span>Quản lý phiếu xác nhận tt ngoại trú</span>
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="@Url.Action("Index", "Home")">
+                <a class="nav-link" href="@Url.Action("Logout", "Admin")">
                     <i class="fas fa-arrow-left"></i>
-                    <span>Quay về trang chủ</span>
+                    <span>Đăng xuất</span>
                 </a>
             </li>
         </ul>
         <div id="content-wrapper">
             <div class="container-fluid">
-                
+
                 <!-- DataTables Example -->
                 <div>
                     @RenderBody()
@@ -130,7 +180,7 @@
                 <div class="modal-body">Toàn bộ dữ liệu về các phòng này sẽ bị xóa.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-danger text-white" href="#">Delete</a>
+                    <a id="Delete" class="btn btn-danger text-white" href="#">Delete</a>
                 </div>
             </div>
         </div>
@@ -145,18 +195,69 @@
     <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="~/js/sb-admin.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://uxsolutions.github.io/bootstrap-datepicker/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
     <script>
         $(document).ready(function () {
-          $(".select-all").on('change',function(){
-            console.log('check');
-            $(".checkbox").prop('checked',$(this).is(":checked"));
-          });
+            $(".select-all").on('change', function () {
+                console.log('check');
+                $(".checkbox").prop('checked', $(this).is(":checked"));
+            });
         });</script>
     <!-- Demo scripts for this page-->
-   
+    <script src="~/js/demo/datatables-demo.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        toastr.options.timeOut = 1000;
+        toastr.options.positionClass = "toast-bottom-right";
+        if ('@TempData["message"]' == 'success') {
+            switch ('@TempData["message2"]') {
+                case 'add':
+                    toastr.success('Thêm thành công');
+                    break;
+                case 'edit':
+                    toastr.success('Sửa thành công');
+                    break;
+                case 'delete':
+                    toastr.success('Xóa thành công');
+                    break;
+                case 'revise':
+                    toastr.success('Duyệt thành công');
+                    break;
+            }
+       }
+        else if ('@TempData["message"]' == 'fail') {
+            switch ('@TempData["message2"]') {
+                case 'add':
+                    toastr.error('Thêm thất bại');
+                    break;
+                case 'edit':
+                    toastr.error('Sửa thất bại');
+                    break;
+                case 'delete':
+                    toastr.error('Xóa thất bại');
+                    break;
 
-    <script src="js/demo/datatables-demo.js"></script>
-
-
+                case 'revise':
+                    toastr.error('Duyệt thất bại');
+                    break;
+            }
+        }
+    });
+    </script>
+    <script>
+        $(function () {
+            $('#datepicker').datetimepicker({
+                format: "yyyy-mm-dd",
+                multidate: true
+            });
+        });
+    </script>
 </body>
 </html>

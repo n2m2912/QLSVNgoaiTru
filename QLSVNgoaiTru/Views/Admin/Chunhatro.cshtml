@@ -80,7 +80,9 @@
                             <td>
                                 <img src="@Url.Content("~/images/chunhatro/" + item.Imagees)" style="width:170px;height:30%" />
                             </td>
-                            <td><a class="btn btn-info m-1" href="@Url.Action("CNTDetail","Admin")"> Chi tiết</a> </td>
+                            <td>
+                                @Html.ActionLink("Chi tiết", "CNTDetail", "Admin", new { id = item.Machunhatro }, new { @class = "btn btn-info m-1" })
+                            </td>
                         </tr>
                     }
                     </tbody>

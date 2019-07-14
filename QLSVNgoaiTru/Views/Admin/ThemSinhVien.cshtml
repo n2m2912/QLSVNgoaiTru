@@ -1,4 +1,4 @@
-﻿
+﻿@model QLSVNgoaiTru.Models.sinhvien
 @{
     ViewBag.Title = "ThemSinhVien";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -19,56 +19,82 @@
     </div>
     <div class="card-body">
         <div class="col-md-8">
+            @using (Html.BeginForm("ThemSinhVien", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
             <form>
                 <div class="form-group">
                     <label>Tên: </label>
-                    <input type="text" class="form-control" placeholder="Tên">
+                    @Html.EditorFor(model => model.Tensv, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tensv, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     <label>Giới tính: </label><br>
-                    <label class="radio-inline"><input type="radio" name="optradio" value="1">Nam</label>
-                    <label class="radio-inline  pl-5"><input type="radio" name="optradio" vlaue="0">Nữ</label>
+                    @Html.RadioButtonFor(model => model.Gioitinh, "Nam", new { htmlAttributes = new { @class = "form-control" } }) Nam
+                    @Html.RadioButtonFor(model => model.Gioitinh, "Nữ", new { htmlAttributes = new { @class = "form-control" } }) Nữ
+                    @Html.ValidationMessageFor(model => model.Gioitinh, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group">
+                    <label>Năm sinh: </label>
+                    @Html.EditorFor(model => model.Namsinh, new { htmlAttributes = new { @type = "date", @class = "form-control datetimepicker" } })
+                    @Html.ValidationMessageFor(model => model.Namsinh, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     <label>Địa chỉ: </label>
-                    <input type="text" class="form-control" placeholder="Địa chỉ">
+                    @Html.EditorFor(model => model.Diachi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Diachi, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label>Đối tượng ưu tiên: </label>
+                    @Html.EditorFor(model => model.Doituonguutien, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Doituonguutien, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label>SĐT gia đình: </label>
+                    @Html.EditorFor(model => model.SDTgiadinh, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SDTgiadinh, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     <label>SĐT: </label>
-                    <input type="text" class="form-control" placeholder="SĐT">
+                    @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     <label>Quê quán: </label>
-                    <input type="text" class="form-control" placeholder="Quê quán">
+                    @Html.EditorFor(model => model.Quequan, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Quequan, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     <label>Khóa: </label>
-                    <input type="text" class="form-control" placeholder="Khóa">
+                    @Html.EditorFor(model => model.Nienkhoa, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nienkhoa, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     <label>Lớp: </label>
-                    <select class="form-control">
-                        <option>Mustard</option>
-                        <option>Ketchup</option>
-                        <option>Relish</option>
-                    </select>
+                    @Html.DropDownListFor(model => model.Malop, new SelectList(ViewBag.Lop, "Malop", "Tenlop"), new { htmlAttributes = new { @class = "form-control" } })
                 </div>
                 <div class="form-group">
                     <label>Mật khẩu: </label>
-                    <input type="text" class="form-control" placeholder="Mật khẩu">
+                    @Html.EditorFor(model => model.Pass, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Pass, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     <label>Hình ảnh: </label><br>
-                    <button id="imageDrop" class="btn btn-primary" onclick="document.getElementById('uploadImage').click()" title="Click or Drag Image">Upload image</button>
-                    <input id="uploadImage" type="file" />
+                    <input id="fileupload" name="fileupload" type="file" />
+                    @ViewBag.Thongbao
                 </div>
                 <div class="pb-2">
                     <input type="checkbox" class="form-control" placeholder="Quy định" style="display:inline; width: 5%">
                     <p style="display:inline">Tôi chấp nhận những quy định.</p>
                 </div>
+                <div class="form-group">
+                    <input type="submit" value="Lưu" class="btn btn-success" />
+                    @ViewBag.Thongbaosave
+                    <button class="btn btn-secondary">Quay về</button>
+                </div>
             </form>
-            <button class="btn btn-success">Đăng</button>
-            <button class="btn btn-secondary">Quay về</button>
+            }
         </div>
     </div>
 

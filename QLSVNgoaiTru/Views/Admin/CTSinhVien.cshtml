@@ -1,17 +1,17 @@
-﻿
+﻿@model QLSVNgoaiTru.Models.ChiTietSinhVien
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "CTSinhVien";
-                Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "CTSinhVien";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
-        <a href="#">Trang chủ</a>
+        <a href="Index">Trang chủ</a>
     </li>
     <li class="breadcrumb-item">
-        <a href="admin-sinhvien.html">Danh sách sinh viên</a>
+        <a href="Sinhvien">Danh sách sinh viên</a>
     </li>
     <li class="breadcrumb-item">Chi tiết sinh viên</li>
 </ol>
@@ -22,22 +22,24 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-md-4">
-                <img src="http://placehold.it/200x200">
-            </div>
-            <div class="col-md-8">
-                <label>Tên:</label><p class="pl-1" style="display: inline;">Name</p><br>
-                <label>Giới tính:</label><p class="pl-1" style="display: inline;">Gender</p><br>
-                <label>Địa chỉ:</label><p class="pl-1" style="display: inline;">Address</p><br>
-                <label>SĐT:</label><p class="pl-1" style="display: inline;">Phone number</p><br>
-                <label>Quên quán:</label><p class="pl-1" style="display: inline;">QQ</p><br>
-                <label>Khoa:</label><p class="pl-1" style="display: inline;">Khoa</p><br>
-                <label>Lớp:</label><p class="pl-1" style="display: inline;">Class</p><br>
-                <label>Khoá:</label><p class="pl-1" style="display: inline;">Khoa</p><br>
-                <label class="pb-5">Hộ khẩu:</label><p class="pl-1" style="display: inline;">HK</p><br>
-                @Html.ActionLink("Sửa", "SuaSinhVien", "Admin", null, new { @class = "btn btn-success" })
-                <a class="btn btn-danger text-white text-white" data-toggle="modal" data-target="#deleteModal">Xóa</a>
-            </div>
+                <div class="col-md-4">
+                    <img src="@Url.Content("~/images/sv/" + Model.sv.Images)" style="width:50%;" />
+                </div>
+                <div class="col-md-8">
+                    <label>MSSV:</label><p class="pl-1" style="display: inline;">@Model.sv.Masv</p><br>
+                    <label>Tên:</label><p class="pl-1" style="display: inline;">@Model.sv.Tensv</p><br>
+                    <label>Giới tính:</label><p class="pl-1" style="display: inline;">@Model.sv.Gioitinh</p><br>
+                    <label>Địa chỉ:</label><p class="pl-1" style="display: inline;">@Model.sv.Diachi</p><br>
+                    <label>SĐT:</label><p class="pl-1" style="display: inline;">@Model.sv.SDT</p><br>
+                    <label>Quên quán:</label><p class="pl-1" style="display: inline;">@Model.sv.Quequan</p><br>
+                    <label>Khoa:</label><p class="pl-1" style="display: inline;">@Model.k.Tenkhoa</p><br>
+                    <label>Lớp:</label><p class="pl-1" style="display: inline;">@Model.cl.Tenlop</p><br>
+                    <label>Khoá:</label><p class="pl-1" style="display: inline;">@Model.sv.Nienkhoa</p><br>
+                    <label class="pb-5">Hộ khẩu:</label><p class="pl-1" style="display: inline;">HK</p><br>
+                    @Html.ActionLink("Sửa", "SuaSinhVien", "Admin", new { id = Model.sv.Masv }, new { @class = "btn btn-info m-1" })
+                    @Html.ActionLink("Xóa", "XoaSinhVien", "Admin", new { id = Model.sv.Masv }, new { @class = "btn btn-danger text-white m-1", @onclick = "return confirm('Bạn muốn xóa sinh viên này?');" })
+
+                </div>
         </div>
     </div>
 </div>
@@ -52,104 +54,222 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
+            <h4>Phiếu đăng kí tìm phòng trọ</h4>
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" class="select-all"></th>
-                        <th>Mã phòng</th>
-                        <th>Mô tả</th>
-                        <th>Giá</th>
-                        <th>Ngày đăng</th>
-                        <th>Số người đăng ký</th>
+                        <th>Mã phiếu</th>
+                        <th>Ngày lập</th>
+                        <th>Trạng thái</th>
                         <th>Chức năng</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th><input type="checkbox" class="select-all"></th>
-                        <th>Mã phòng</th>
-                        <th>Mô tả</th>
-                        <th>Giá</th>
-                        <th>Ngày đăng</th>
-                        <th>Số người đăng ký</th>
+                        <th>Mã phiếu</th>
+                        <th>Ngày lập</th>
+                        <th>Trạng thái</th>
                         <th>Chức năng</th>
                     </tr>
                 </tfoot>
                 <tbody>
-                    <tr>
-                        <td><input type="checkbox" class="checkbox"></td>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td><a class="btn btn-info m-1" href="cnt-room-edit.html">Sửa</a><a class="btn btn-danger text-white m-1" data-toggle="modal" data-target="#deleteModal">Xóa</a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="checkbox"></td>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td><a class="btn btn-info m-1" href="cnt-room-edit.html">Sửa</a><a class="btn btn-danger text-white m-1" data-toggle="modal" data-target="#deleteModal">Xóa</a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="checkbox"></td>
-                        <td>Ashton Cox</td>
-                        <td>Junior Technical Author</td>
-                        <td>San Francisco</td>
-                        <td>66</td>
-                        <td>2009/01/12</td>
-                        <td><a class="btn btn-info m-1" href="cnt-room-edit.html">Sửa</a><a class="btn btn-danger text-white m-1" data-toggle="modal" data-target="#deleteModal">Xóa</a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="checkbox"></td>
-                        <td>Cedric Kelly</td>
-                        <td>Senior Javascript Developer</td>
-                        <td>Edinburgh</td>
-                        <td>22</td>
-                        <td>2012/03/29</td>
-                        <td><a class="btn btn-info m-1" href="cnt-room-edit.html">Sửa</a><a class="btn btn-danger text-white m-1" data-toggle="modal" data-target="#deleteModal">Xóa</a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="checkbox"></td>
-                        <td>Airi Satou</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>33</td>
-                        <td>2008/11/28</td>
-                        <td><a class="btn btn-info m-1" href="cnt-room-edit.html">Sửa</a><a class="btn btn-danger text-white m-1" data-toggle="modal" data-target="#deleteModal">Xóa</a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="checkbox"></td>
-                        <td>Brielle Williamson</td>
-                        <td>Integration Specialist</td>
-                        <td>New York</td>
-                        <td>61</td>
-                        <td>2012/12/02</td>
-                        <td><a class="btn btn-info m-1" href="cnt-room-edit.html">Sửa</a><a class="btn btn-danger text-white m-1" data-toggle="modal" data-target="#deleteModal">Xóa</a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="checkbox"></td>
-                        <td>Herrod Chandler</td>
-                        <td>Sales Assistant</td>
-                        <td>San Francisco</td>
-                        <td>59</td>
-                        <td>2012/08/06</td>
-                        <td><a class="btn btn-info m-1" href="cnt-room-edit.html">Sửa</a><a class="btn btn-danger text-white m-1" data-toggle="modal" data-target="#deleteModal">Xóa</a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="checkbox"></td>
-                        <td>Rhona Davidson</td>
-                        <td>Integration Specialist</td>
-                        <td>Tokyo</td>
-                        <td>55</td>
-                        <td>2010/10/14</td>
-                        <td><a class="btn btn-info m-1" href="cnt-room-edit.html">Sửa</a><a class="btn btn-danger text-white m-1" data-toggle="modal" data-target="#deleteModal">Xóa</a></td>
-                    </tr>
+                    @foreach (var dktpt in ViewBag.danhsachphieu.dktpt)
+                    {
+                        <tr>
+                            <td>@dktpt.Madangkytimnhatro</td>
+                            <td>@dktpt.Ngaylap</td>
+                            <td>
+                                @if (@dktpt.TrangThai == 1)
+                                {<p>Đã Duyệt</p>}
+                                else
+                                { <p>Chưa duyệt</p>}
+                            </td>
+                            <td>
+                                @if (@dktpt.TrangThai == 0)
+                                {@Html.ActionLink("Duyệt", "DuyetDkTimPhongTro", "Admin", new { id = dktpt.Madangkytimnhatro }, new { @class = "btn btn-warning text-white m-1", @onclick = "return confirm('Bạn muốn xóa phòng này?');" })}
+                                @Html.ActionLink("Chi tiết", "CTDkTimPhongTro", "Admin", new { id = dktpt.Madangkytimnhatro }, new { @class = "btn btn-info text-white m-1", @onclick = "return confirm('Bạn muốn xóa phòng này?');" })
+                            </td>
+                        </tr>
 
+                    }
 
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <h4>Phiếu thay đổi địa chỉ</h4>
+            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã phiếu</th>
+                        <th>Ngày lập</th>
+                        <th>Trạng thái</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã phiếu</th>
+                        <th>Ngày lập</th>
+                        <th>Trạng thái</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var tddc in ViewBag.danhsachphieu.tddc)
+                    {
+                        <tr>
+                            <td>@tddc.Maphieuthaydoidiachi</td>
+                            <td>@tddc.Ngaythaydoidiachi</td>
+                            <td>
+                                @if (@tddc.TrangThai == 1)
+                                {<p>Đã Duyệt</p>}
+                                else
+                                { <p>Chưa duyệt</p>}
+                            </td>
+                            <td>
+                                @if (@tddc.TrangThai == 0)
+                                {@Html.ActionLink("Duyệt", "DuyetDkthaydoidiachi", "Admin", new { id = tddc.Maphieuthaydoidiachi }, new { @class = "btn btn-warning text-white m-1", @onclick = "return confirm('Bạn muốn xóa phòng này?');" })}
+                                @Html.ActionLink("Chi tiết", "CTDkthaydoidiachi", "Admin", new { id = tddc.Maphieuthaydoidiachi }, new { @class = "btn btn-info text-white m-1", @onclick = "return confirm('Bạn muốn xóa phòng này?');" })
+                            </td>
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <h4>Phiếu xác nhận thông tin ngoại trú</h4>
+            <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã phiếu</th>
+                        <th>Ngày lập</th>
+                        <th>Trạng thái</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã phiếu</th>
+                        <th>Ngày lập</th>
+                        <th>Trạng thái</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var xnttnt in ViewBag.danhsachphieu.xnttnt)
+                    {
+                        <tr>
+                            <td>@xnttnt.Maphieuxacnhan</td>
+                            <td>@xnttnt.Ngaylap</td>
+                            <td>
+                                @if (@xnttnt.TrangThai == 1)
+                                {<p>Đã Duyệt</p>}
+                                else
+                                { <p>Chưa duyệt</p>}
+                            </td>
+                            <td>
+                                
+                                @Html.ActionLink("Chi tiết", "DuyetPhieuXacNhanThongTinNgoaiTru", "Admin", new { id = xnttnt.Maphieuxacnhan }, new { @class = "btn btn-info text-white m-1", @onclick = "return confirm('Bạn muốn xóa phòng này?');" })
+                            </td>
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <h4>Phiếu đăng ký ngoại trú</h4>
+            <table class="table table-bordered" id="dataTable3" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã phiếu</th>
+                        <th>Ngày lập</th>
+                        <th>Trạng thái</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã phiếu</th>
+                        <th>Ngày lập</th>
+                        <th>Trạng thái</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var dknt in ViewBag.danhsachphieu.dknt)
+                    {
+                        <tr>
+                            <td>@dknt.MaPDKNT</td>
+                            <td>@dknt.Ngaylapphieu</td>
+                            <td>
+                                @if (@dknt.TrangThai == 1)
+                                {<p>Đã Duyệt</p>}
+                                else
+                                { <p>Chưa duyệt</p>}
+                            </td>
+                            <td>
+                                @if (@dknt.TrangThai == 0)
+                                {@Html.ActionLink("Duyệt", "DuyetDKNgoaiTru", "Admin", new { id = dknt.MaPDKNT }, new { @class = "btn btn-warning text-white m-1", @onclick = "return confirm('Bạn muốn xóa phòng này?');" })}
+                                @Html.ActionLink("Chi tiết", "CTDKNgoaiTru", "Admin", new { id = dknt.MaPDKNT }, new { @class = "btn btn-info text-white m-1", @onclick = "return confirm('Bạn muốn xóa phòng này?');" })
+                            </td>
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <h4>Phiếu giới thiệu sinh viên ngoại trú</h4>
+            <table class="table table-bordered" id="dataTable3" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã phiếu</th>
+                        <th>Ngày lập</th>
+                        <th>Trạng thái</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã phiếu</th>
+                        <th>Ngày lập</th>
+                        <th>Trạng thái</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var gtsvnt in ViewBag.danhsachphieu.gtsvnt)
+                    {
+                        <tr>
+                            <td>@gtsvnt.Maxacnhan</td>
+                            <td>@gtsvnt.Ngaylap</td>
+                            <td>
+                                @if (gtsvnt.TrangThai == 1)
+                                {<p>Đã Duyệt</p>}
+                                else
+                                { <p>Chưa duyệt</p>}
+                            </td>
+                            <td>
+                                
+                                @Html.ActionLink("Chi tiết", "DuyetPhieuGioiThieuSinhVienNgoaiTru", "Admin", new { id = gtsvnt.Maxacnhan }, new { @class = "btn btn-info text-white m-1" })
+                            </td>
+                        </tr>
+
+                    }
 
                 </tbody>
             </table>

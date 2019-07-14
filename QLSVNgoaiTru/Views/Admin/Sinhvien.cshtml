@@ -1,12 +1,11 @@
-﻿@model IEnumerable<QLSVNgoaiTru.Models.sinhvien>
-@{
+﻿@{
     ViewBag.Title = "Sinhvien";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <!-- Breadcrumbs-->
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
-        <a href="#">Trang chủ</a>
+        <a href="Index">Trang chủ</a>
     </li>
     <li class="breadcrumb-item">Danh sách sinh viên</li>
 </ol>
@@ -27,30 +26,30 @@
                 <thead>
                     <tr>
                         <th><input type="checkbox" class="select-all"></th>
-                        <th> @Html.DisplayNameFor(model => model.Masv)</th>
+                        <th>Mã sinh viên</th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Tensv)
+                            Tên sinh viên
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Gioitinh)
+                            Giới tính
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Diachi)
+                            Địa chỉ
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.SDT)
+                            Số điện thoại
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Quequan)
+                            Quên quán
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Nienkhoa)
+                            Niên khóa
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Malop)
+                            Lớp
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Images)
+                            Hình ảnh
                         </th>
                         <th>Chức năng</th>
                     </tr>
@@ -58,70 +57,69 @@
                 <tfoot>
                     <tr>
                         <th><input type="checkbox" class="select-all"></th>
-                        <th> @Html.DisplayNameFor(model => model.Masv)</th>
+                        <th>Mã sinh viên</th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Tensv)
+                            Tên sinh viên
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Gioitinh)
+                            Giới tính
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Diachi)
+                            Địa chỉ
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.SDT)
+                            Số điện thoại
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Quequan)
+                            Quên quán
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Nienkhoa)
+                            Niên khóa
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Malop)
+                            Lớp
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Images)
+                            Hình ảnh
                         </th>
 
                         <th>Chức năng</th>
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in ViewBag.danhsachsv)
                     {
                     <tr>
                         <td><input type="checkbox" class="checkbox"></td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Masv)
+                            @item.sv.Masv
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Tensv)
+                            @item.sv.Tensv
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Gioitinh)
+                            @item.sv.Gioitinh
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Diachi)
+                            @item.sv.Diachi
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.SDT)
+                            @item.sv.SDT
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Quequan)
+                            @item.sv.Quequan
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Nienkhoa)
+                            @item.sv.Nienkhoa
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Malop)
+                            @item.cl.Tenlop
                         </td>
                         <td>
-                            <img src="@Url.Content("~/images/sv/"+  item.Images)" style="width:170px;height:50%" />
+                            <img src="@Url.Content("~/images/sv/" + item.sv.Images)" style="width:100%;" />
                         </td>
                         <td>
-                            @Html.ActionLink("Chi tiết", "CTSinhVien", "Admin", null, new { @class = "btn btn-info m-1" })
-                            <a class="btn btn-danger text-white m-1" data-toggle="modal" data-target="#deleteModal">Xóa</a>
+                            @Html.ActionLink("Chi tiết", "CTSinhVien", "Admin", new { id = item.sv.Masv }, new { @class = "btn btn-info m-1" })
                         </td>
                     </tr>
                     }

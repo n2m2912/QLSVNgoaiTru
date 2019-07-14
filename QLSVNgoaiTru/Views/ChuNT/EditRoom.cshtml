@@ -1,4 +1,5 @@
 ﻿@model QLSVNgoaiTru.Models.phongtro
+
 @{
     ViewBag.Title = "EditRoom";
     Layout = "~/Views/Shared/_LayoutCNT.cshtml";
@@ -9,7 +10,7 @@
         <a href="#">Trang chủ</a>
     </li>
     <li class="breadcrumb-item">
-        <a href="/ChuNT/Room">Danh sách phòng</a>
+        <a href="cnt-room.html">Danh sách phòng</a>
     </li>
     <li class="breadcrumb-item">Sửa phòng</li>
 </ol>
@@ -23,54 +24,47 @@
             @using (Html.BeginForm("EditRoom", "ChuNT", FormMethod.Post, new { @enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
-                <form>
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.Maphongtro)
-                    <div class="form-group">
-                        <label>Tên phòng: </label>
-                        @*<input type="text" class="form-control" placeholder="Tiền đặt cộc" value="@Html.DisplayFor(model => model.phongtro.Tiendatcoc)">*@
-                        @Html.EditorFor(model => model.Tenphong, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Tenphong, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
-                        <label>Tiền đặt cộc: </label>
-                        @*<input type="text" class="form-control" placeholder="Tiền đặt cộc" value="@Html.DisplayFor(model => model.phongtro.Tiendatcoc)">*@
-                        @Html.EditorFor(model => model.Tiendatcoc, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Tiendatcoc, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
-                        <label>Mô tả: </label>
-                        <textarea class="form-control" name="Mota">@Html.DisplayFor(model => model.Mota)</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Số phòng: </label>
-                        @*<input type="text" class="form-control" placeholder="Số phòng" value="@Html.DisplayFor(model => model.phongtro.Sophong)">*@
-                        @Html.EditorFor(model => model.Sophong, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Sophong, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
-                        <label>Nội quy: </label>
-                        <textarea class="form-control" name="Noiquyphongtro">@Html.DisplayFor(model => model.Noiquyphongtro)</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Hình ảnh: </label><br>
-                        <button id="imageDrop" class="btn btn-primary" onclick="document.getElementById('uploadImage').click()" title="Click or Drag Image">Upload image</button>
-                        <input id="uploadImage" type="file" name="fileUpload" />
-                        <p style="padding:0 10px; color:red">@ViewBag.Thongbao</p>
-                        <img src="@Url.Content("~/images/"+Model.Images)" width="250px" /> (Hình ảnh hiện tại @Model.Images))
-                    </div>
-                    <div class="form-group">
-                        <label>Google Map link: </label>
-                        @*<input type="text" class="form-control" placeholder="Số phòng" value="@Html.DisplayFor(model => model.phongtro.Sophong)">*@
-                        @Html.EditorFor(model => model.Googlemap, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Googlemap, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Sửa" class="btn btn-success" />
-                        <button class="btn btn-secondary">Quay về</button>
-                    </div>
-                </form>
+            <form>
+                @Html.HiddenFor(model => model.Maphongtro)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Diachi)
+                    @Html.EditorFor(model => model.Diachi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Diachi, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sophong)
+                    @Html.EditorFor(model => model.Sophong, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Sophong, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Tiendatcoc)
+                    @Html.EditorFor(model => model.Tiendatcoc, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tiendatcoc, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Noiquyphongtro)
+                    @Html.EditorFor(model => model.Noiquyphongtro, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Noiquyphongtro, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Mota)
+                    @Html.EditorFor(model => model.Mota, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label>Hình ảnh: </label><br>
+                    <input id="fileupload" name="fileupload" type="file" />
+                    <br />
+                    <img src="@Url.Content("~/images/phongtro/" + Model.Images)" style="width:200px;height:auto;" />
+                    @ViewBag.Thongbao
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Lưu" class="btn btn-success" />
+                    @ViewBag.Thongbaosave
+                    <button class="btn btn-secondary">Quay về</button>
+                </div>
+            </form>
             }
-        </div>
+            </div>
     </div>
 
